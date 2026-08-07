@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>แบบประเมินความพร้อมและความเหมาะสมในการเลือกเส้นทาง ม.1</title>
+  <style>
+    :root{
+      --bg:#f6f7fb; --card:#fff; --ink:#1f2937; --muted:#667085; --line:#e5e7eb;
+      --accent:#3758f9; --accent-soft:#eef2ff; --ok:#137a4c; --warn:#9a6700; --bad:#b42318;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+    .wrap{max-width:980px;margin:0 auto;padding:20px}
+    .hero{background:linear-gradient(135deg,#1d2f6f,#4c6fff);color:#fff;border-radius:20px;padding:28px;margin-bottom:18px}
+    .hero h1{margin:0 0 8px;font-size:clamp(24px,4vw,40px);line-height:1.2}.hero p{margin:6px 0;color:#eef2ff}
+    .notice{background:#fff8e7;border:1px solid #f3d48a;border-radius:14px;padding:14px 16px;margin-top:14px;color:#694100}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 6px 18px rgba(15,23,42,.04)}
+    h2{margin:0 0 10px;font-size:22px} h3{margin:16px 0 8px;font-size:18px}
+    label.small,.small{font-size:13px;color:var(--muted)}
+    input[type=text],input[type=date]{width:100%;padding:11px 12px;border:1px solid #cfd4dc;border-radius:10px;font-size:16px;background:#fff}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+    .legend{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.legend div{background:#f9fafb;border:1px solid var(--line);padding:8px;border-radius:10px;text-align:center;font-size:12px}
+    .q{border-top:1px solid var(--line);padding:14px 0}.q:first-of-type{border-top:none}.qtext{font-weight:600;margin-bottom:8px}
+    .scale{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.scale label{display:flex;align-items:center;justify-content:center;gap:5px;padding:8px 4px;border:1px solid var(--line);border-radius:10px;background:#fafafa;cursor:pointer;font-size:13px}.scale label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+    .yn{display:flex;gap:10px;flex-wrap:wrap}.yn label{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:#fafafa;cursor:pointer}.yn label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+    .actions{position:sticky;bottom:0;background:rgba(246,247,251,.92);backdrop-filter:blur(8px);padding:12px 0;display:flex;gap:10px;flex-wrap:wrap;z-index:5}
+    button{border:0;border-radius:11px;padding:12px 16px;font-size:15px;font-weight:700;cursor:pointer}.primary{background:var(--accent);color:#fff}.secondary{background:#fff;border:1px solid #cfd4dc;color:#273046}.danger{background:#fff1f0;color:var(--bad);border:1px solid #ffc9c5}
+    #results{display:none}.scoregrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}@media(max-width:800px){.scoregrid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.scoregrid{grid-template-columns:1fr}}
+    .scorebox{border:1px solid var(--line);border-radius:14px;padding:14px}.scorebox b{font-size:24px;display:block}.pill{display:inline-block;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700;background:#f2f4f7}.high{color:var(--ok)}.mid{color:var(--warn)}.low{color:var(--bad)}
+    table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid var(--line);text-align:left;padding:10px 8px;vertical-align:top}th{background:#f9fafb}
+    .bar{height:8px;background:#edf0f5;border-radius:99px;overflow:hidden;margin-top:7px}.bar>span{display:block;height:100%;background:#4c6fff}
+    .summary{white-space:pre-line;background:#fbfcff;border:1px solid #dfe5ff;border-radius:14px;padding:16px}
+    .alert{border-radius:12px;padding:12px 14px;margin:10px 0}.alert.ok{background:#ecfdf3;color:#05603a}.alert.warn{background:#fff7e6;color:#7a4b00}.alert.bad{background:#fff1f0;color:#8a1c13}
+    .footer{font-size:12px;color:var(--muted);margin:28px 0 12px;text-align:center}
+    @media print{body{background:#fff}.hero,.actions,#assessmentForm>.card:not(.identity),.footer{display:none!important}#results{display:block!important}.wrap{max-width:none}.card{box-shadow:none;break-inside:avoid}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <h1>แบบประเมินความพร้อมและความเหมาะสมในการเลือกเส้นทาง ม.1</h1>
+    <p>สำหรับนักเรียน ป.6 อายุประมาณ 11–12 ปี | M1 School-Fit & Readiness Assessment – Child Version</p>
+    <div class="notice">แบบนี้เป็นเครื่องมือคัดกรองเพื่อการแนะแนวและตัดสินใจร่วมกัน ไม่ใช่แบบวินิจฉัยทางจิตวิทยาหรือจิตเวช และไม่ควรใช้คะแนนเพียงอย่างเดียวตัดสินอนาคตของเด็ก</div>
+  </section>
+
+  <form id="assessmentForm">
+    <section class="card identity">
+      <h2>ข้อมูลผู้ประเมิน</h2>
+      <div class="grid2">
+        <div><label class="small">ชื่อนักเรียน (ไม่บังคับ)</label><input id="studentName" type="text" placeholder="ชื่อเล่นหรือชื่อที่ต้องการแสดงในรายงาน"></div>
+        <div><label class="small">วันที่ทำแบบประเมิน</label><input id="assessmentDate" type="date"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>วิธีตอบ</h2>
+      <p>ตอบตามตัวเองในช่วงประมาณ 3–6 เดือนที่ผ่านมา ไม่ต้องตอบเพื่อให้พ่อแม่หรือครูพอใจ</p>
+      <div class="legend"><div>1<br>ไม่เหมือนฉันเลย</div><div>2<br>ไม่ค่อยเหมือนฉัน</div><div>3<br>บางครั้งใช่</div><div>4<br>ค่อนข้างเหมือนฉัน</div><div>5<br>เหมือนฉันมาก</div></div>
+    </section>
+
+    <div id="questionSections"></div>
+
+    <section class="card">
+      <h2>คำถามสำคัญพิเศษเรื่องการอยู่หอ</h2>
+      <div class="q">
+        <div class="qtext">G-Safety: ถ้าพ่อแม่บอกว่าอยากให้ฉันไปอยู่หอ แต่ฉันไม่อยากไป ฉันกล้าบอกพวกเขาตรงๆ</div>
+        <div class="scale" id="gsafetyScale"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ตัวบ่งชี้ความเสี่ยงที่คะแนนรวมไม่ควรกลบ</h2>
+      <p class="small">ตอบ “ใช่” หากเกิดขึ้นบ่อยหรือมีผลต่อชีวิตจริงในช่วงที่ผ่านมา</p>
+      <div id="riskQuestions"></div>
+    </section>
+
+    <section class="card">
+      <h2>Checklist ผู้ปกครอง</h2>
+      <p class="small">ส่วนนี้ไม่รวมเป็นคะแนนบุคลิกภาพของเด็ก แต่ใช้ประกอบการตัดสินใจ</p>
+      <div id="parentChecklist"></div>
+    </section>
+
+    <div class="actions">
+      <button class="primary" type="button" onclick="calculateResults()">คำนวณและสรุปผล</button>
+      <button class="secondary" type="button" onclick="window.print()">พิมพ์ / บันทึกเป็น PDF</button>
+      <button class="secondary" type="button" onclick="downloadReport()">ดาวน์โหลดสรุปผล .txt</button>
+      <button class="danger" type="reset" onclick="setTimeout(resetResults,0)">ล้างคำตอบ</button>
+    </div>
+  </form>
+
+  <section id="results">
+    <div class="card">
+      <h2>ผลคะแนนรายด้าน</h2>
+      <div id="domainScores" class="scoregrid"></div>
+    </div>
+    <div class="card">
+      <h2>ความพร้อมในการอยู่หอ</h2>
+      <div id="dormResult"></div>
+    </div>
+    <div class="card">
+      <h2>Ranking ความเหมาะสมของเส้นทาง</h2>
+      <div id="pathResults"></div>
+    </div>
+    <div class="card">
+      <h2>ตัวบ่งชี้ความเสี่ยง</h2>
+      <div id="riskResult"></div>
+    </div>
+    <div class="card">
+      <h2>สรุปผลเชิงวิชาชีพ</h2>
+      <div id="professionalSummary" class="summary"></div>
+    </div>
+    <div class="card">
+      <h2>ข้อเตือนในการใช้ผล</h2>
+      <ul>
+        <li>ผลนี้สะท้อน “ความเหมาะสม ณ ปัจจุบัน” ไม่ใช่ความสามารถถาวรของเด็ก</li>
+        <li>ต้องตรวจเกณฑ์รับสมัคร เขตพื้นที่ ค่าใช้จ่าย และกำหนดการจากประกาศทางการของโรงเรียนในปีที่สมัคร</li>
+        <li>ถ้ามีสัญญาณความเครียดรุนแรง ต่อเนื่อง หรือกระทบการกิน การนอน การเรียน หรือชีวิตประจำวัน ควรปรึกษาผู้เชี่ยวชาญที่เหมาะสม</li>
+        <li>สำหรับการใช้งานเชิงวิจัยหรือโรงเรียน ควรตรวจความตรงเชิงเนื้อหา ทดลองใช้ และศึกษาความเชื่อมั่น/โครงสร้างองค์ประกอบก่อน</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="footer">ข้อมูลคำตอบถูกประมวลผลภายในเบราว์เซอร์ของผู้ใช้ ไฟล์นี้ไม่ส่งข้อมูลไปยังเซิร์ฟเวอร์ใดโดยอัตโนมัติ</div>
+</div>
+<script>
+const domains = {
+ A:{title:'A — แรงจูงใจภายในและความเป็นเจ้าของการตัดสินใจ',short:'แรงจูงใจ/Ownership',qs:[
+  'ถ้าฉันสนใจเรื่องหนึ่ง ฉันอยากเรียนรู้ต่อแม้ไม่มีใครสั่ง',
+  'ฉันมีเหตุผลของตัวเองว่าอยากเรียนต่อโรงเรียนแบบไหน',
+  'ฉันกล้าบอกพ่อแม่ได้ว่าฉันอยากหรือไม่อยากเรียนที่ไหน',
+  'เวลาตัดสินใจเรื่องโรงเรียน ฉันอยากมีส่วนร่วมจริงๆ']},
+ B:{title:'B — ความสนใจวิทยาศาสตร์และคณิตศาสตร์',short:'STEM Interest',qs:[
+  'ฉันชอบหาคำตอบว่า “ทำไม” สิ่งต่างๆ จึงเกิดขึ้น',
+  'ฉันสนุกกับโจทย์คณิตศาสตร์หรือวิทยาศาสตร์ที่ต้องคิดหลายขั้น',
+  'บางครั้งฉันอ่าน ดูคลิป ทดลอง หรือค้นเรื่องวิทย์–คณิตเองโดยไม่มีการบ้าน',
+  'ถ้าเจอเรื่องวิทย์หรือคณิตที่น่าสนใจ ฉันสามารถอยู่กับมันได้นาน']},
+ C:{title:'C — ภาษาอังกฤษเพื่อการใช้งาน',short:'Functional English',qs:[
+  'ฉันฟังคลิปหรือการ์ตูนภาษาอังกฤษแล้วเข้าใจใจความสำคัญได้',
+  'ฉันกล้าพูดภาษาอังกฤษ แม้จะพูดผิดบ้าง',
+  'ถ้าครูอธิบายวิชาคณิตหรือวิทยาศาสตร์เป็นภาษาอังกฤษ ฉันคิดว่าฉันพอตามได้',
+  'เวลาไม่เข้าใจภาษาอังกฤษ ฉันพยายามเดาความหมายหรือถามต่อ ไม่หยุดเรียนทันที']},
+ D:{title:'D — ความสนใจกว้าง ความคิดสร้างสรรค์ และกิจกรรม',short:'Breadth & Activities',qs:[
+  'ฉันสนใจหลายเรื่อง ไม่ได้ชอบเพียงวิชาเดียว',
+  'ฉันชอบกิจกรรม เช่น กีฬา ดนตรี ศิลปะ ชมรม การแสดง หรือกิจกรรมกลุ่ม',
+  'ฉันสนุกกับการเรียนที่ให้คิดหลายแบบและเชื่อมโยงหลายวิชา',
+  'ฉันอยากมีโอกาสลองสิ่งใหม่ๆ เพื่อค้นหาว่าตัวเองชอบอะไร']},
+ E:{title:'E — ความพยายามและการรับมือกับความยาก',short:'Resilience',qs:[
+  'เมื่อทำโจทย์ยากผิด ฉันมักอยากรู้ว่าผิดตรงไหน',
+  'เมื่อเจอเพื่อนที่เก่งกว่าฉัน ฉันยังสามารถเรียนต่อโดยไม่รู้สึกว่าตัวเองไม่มีค่า',
+  'เมื่อคะแนนไม่ดี ฉันสามารถกลับมาพยายามใหม่ได้',
+  'ฉันรับได้ว่าบางครั้งต้องใช้เวลานานกว่าจะเก่งเรื่องหนึ่ง']},
+ F:{title:'F — การวางแผนและจัดการตัวเอง',short:'Executive Function',qs:[
+  'ฉันเตรียมของไปโรงเรียนได้โดยไม่ต้องให้ผู้ใหญ่เตือนทุกอย่าง',
+  'ฉันพอจัดเวลาเรียน เล่น พัก และนอนได้ด้วยตัวเอง',
+  'ถ้ามีงานหลายอย่าง ฉันรู้ว่าควรเริ่มจากอะไร',
+  'ฉันตื่น เตรียมตัว และรับผิดชอบของใช้ของตัวเองได้ค่อนข้างดี']},
+ G:{title:'G — ความพร้อมในการอยู่หอและใช้ชีวิตห่างครอบครัว',short:'Dorm Readiness',qs:[
+  'ถ้ามีเหตุผลที่ฉันเห็นด้วย ฉัน “อยากลอง” ใช้ชีวิตในหอพัก',
+  'ฉันเคยนอนค้างนอกบ้านหรือห่างพ่อแม่แล้วสามารถดูแลตัวเองได้',
+  'ฉันดูแลเรื่องอาบน้ำ เสื้อผ้า ของใช้ส่วนตัว และความสะอาดของตัวเองได้',
+  'ถ้าคิดถึงบ้าน ฉันคิดว่ายังสามารถไปเรียน ทำกิจกรรม และใช้ชีวิตประจำวันต่อได้']},
+ H:{title:'H — การจัดการอารมณ์และการขอความช่วยเหลือ',short:'Emotion & Help-seeking',qs:[
+  'เมื่อเครียด ฉันมีวิธีทำให้ตัวเองสงบลงได้',
+  'ถ้ามีปัญหาที่โรงเรียน ฉันรู้ว่าจะไปขอความช่วยเหลือจากใคร',
+  'ฉันสามารถบอกผู้ใหญ่ได้เมื่อรู้สึกเหนื่อย กังวล หรือรับไม่ไหว',
+  'หลังจากวันที่แย่ ฉันมักกลับมาเป็นปกติได้ภายในเวลาที่เหมาะสม']},
+ I:{title:'I — การปรับตัวทางสังคมและการแข่งขัน',short:'Social Adaptation',qs:[
+  'ฉันสามารถทำงานกับเพื่อนที่นิสัยต่างจากฉันได้',
+  'ฉันรู้จักเพื่อนใหม่ได้โดยไม่ยากเกินไป',
+  'เวลาคนอื่นทำได้ดีกว่าฉัน ฉันไม่จำเป็นต้องคิดว่าตัวเองแย่',
+  'ฉันรับฟังคำแนะนำหรือคำวิจารณ์โดยไม่โกรธหรือเสียใจนานเกินไป']},
+ J:{title:'J — ความสามารถในการใช้ชีวิตโดยไม่ต้องมีพ่อแม่กำกับตลอดเวลา',short:'Daily Independence',qs:[
+  'ฉันทำการบ้านได้แม้ไม่มีผู้ใหญ่นั่งเฝ้า',
+  'ฉันจำสิ่งที่ต้องทำในแต่ละวันได้ค่อนข้างดี',
+  'เมื่อมีปัญหาเล็กๆ ฉันลองแก้เองก่อน แล้วจึงขอความช่วยเหลือเมื่อจำเป็น',
+  'ฉันรับผิดชอบผลของการตัดสินใจของตัวเองได้']},
+ K:{title:'K — สุขภาวะและความสามารถรับภาระ',short:'Well-being & Load',qs:[
+  'ในวันเรียนปกติ ฉันได้นอนเพียงพอและตื่นมาไม่เหนื่อยเกินไป',
+  'หลังเลิกเรียน ฉันยังมีพลังพอสำหรับการบ้าน พักผ่อน หรือกิจกรรมที่ชอบ',
+  'เมื่อมีการบ้านหรือสอบหลายอย่าง ฉันยังรับประทานอาหารและนอนได้ค่อนข้างปกติ',
+  'ฉันคิดว่าการเรียนที่ยากขึ้นจะท้าทายฉัน แต่ไม่ทำให้ชีวิตมีแต่ความเครียด']},
+ L:{title:'L — ความต้องการความสมดุลและพื้นที่ค้นหาตัวเอง',short:'Balance & Exploration',qs:[
+  'ฉันอยากมีเวลาเรียนและมีเวลาทำสิ่งอื่นที่ชอบด้วย',
+  'ตอนนี้ฉันยังอยากลองหลายอย่างก่อนตัดสินใจว่าชอบด้านไหนที่สุด',
+  'การมีชีวิตที่มีทั้งเรียน เพื่อน ครอบครัว และงานอดิเรกสำคัญกับฉัน',
+  'ฉันไม่จำเป็นต้องอยู่ในห้องที่แข่งขันสูงที่สุดเพื่อรู้สึกว่าตัวเองประสบความสำเร็จ']}
+};
+
+const risks = [
+ 'ช่วงหลังฉันไม่อยากไปโรงเรียนบ่อยมาก',
+ 'ฉันนอนไม่หลับหรือกินไม่ได้บ่อยเมื่อเครียดเรื่องเรียน',
+ 'ฉันกลัวทำให้พ่อแม่ผิดหวังจนไม่กล้าบอกว่าอยากเรียนที่ไหน',
+ 'ฉันคิดว่าถ้าสอบไม่ติด แปลว่าฉันไม่เก่งหรือไม่มีคุณค่า',
+ 'ฉันต้องเรียนหรือติวจนแทบไม่มีเวลาพัก',
+ 'ฉันไม่กล้าขอความช่วยเหลือเมื่อมีปัญหา',
+ 'การแข่งขันกับเพื่อนทำให้ฉันรู้สึกแย่กับตัวเองเกือบทุกวัน',
+ 'ฉันยอมเลือกโรงเรียนตามที่ผู้ใหญ่ต้องการ แม้ตัวเองไม่ต้องการ'
+];
+const parentItems = [
+ 'ผลการเรียน/คุณสมบัติตรงตามเกณฑ์สมัครของโรงเรียนจริง',
+ 'โรงเรียนอยู่ในเขตหรือพื้นที่รับสมัครที่กำหนด',
+ 'ค่าใช้จ่ายตลอด 3 ปีอยู่ในระดับที่ครอบครัวรับได้',
+ 'เวลาเดินทางไป–กลับไม่กระทบการนอนและคุณภาพชีวิต',
+ 'มีแผนรับมือหากเด็กป่วยหรือมีเหตุฉุกเฉิน',
+ 'ถ้าอยู่หอ มีระบบครูหอ/ผู้ดูแล/การติดต่อครอบครัวเหมาะสม',
+ 'โรงเรียนมีระบบช่วยเหลือนักเรียนเมื่อมีปัญหาการเรียนหรืออารมณ์',
+ 'เด็กมีโอกาสไปดูสถานที่ พูดกับรุ่นพี่ หรือทดลองบรรยากาศก่อนตัดสินใจ',
+ 'ผู้ปกครองและเด็กเห็นตรงกันในระดับที่ยอมรับได้',
+ 'มีแผนสำรองอย่างน้อย 1–2 ทางเลือก'
+];
+
+function render(){
+ const qs=document.getElementById('questionSections');
+ Object.entries(domains).forEach(([key,d])=>{
+   const s=document.createElement('section'); s.className='card';
+   s.innerHTML=`<h2>${d.title}</h2><div class="small">คะแนนเต็ม 20</div>`;
+   d.qs.forEach((q,i)=>{
+     const wrap=document.createElement('div');wrap.className='q';
+     wrap.innerHTML=`<div class="qtext">${key}${i+1}. ${q}</div><div class="scale">${[1,2,3,4,5].map(v=>`<label><input type="radio" name="${key}${i+1}" value="${v}"> ${v}</label>`).join('')}</div>`;
+     s.appendChild(wrap);
+   });qs.appendChild(s);
+ });
+ document.getElementById('gsafetyScale').innerHTML=[1,2,3,4,5].map(v=>`<label><input type="radio" name="GSAFE" value="${v}"> ${v}</label>`).join('');
+ const r=document.getElementById('riskQuestions'); risks.forEach((q,i)=>r.insertAdjacentHTML('beforeend',`<div class="q"><div class="qtext">R${i+1}. ${q}</div><div class="yn"><label><input type="radio" name="R${i+1}" value="yes"> ใช่</label><label><input type="radio" name="R${i+1}" value="no"> ไม่ใช่</label></div></div>`));
+ const p=document.getElementById('parentChecklist'); parentItems.forEach((q,i)=>p.insertAdjacentHTML('beforeend',`<div class="q"><label><input type="checkbox" name="P${i+1}"> ${q}</label></div>`));
+ const now=new Date(); const localDate=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10); document.getElementById('assessmentDate').value=localDate;
+}
+render();
+
+function getRadio(name){const el=document.querySelector(`input[name="${name}"]:checked`);return el?Number(el.value):null}
+function allAnswered(){
+ let missing=[];Object.entries(domains).forEach(([k,d])=>d.qs.forEach((_,i)=>{if(getRadio(`${k}${i+1}`)==null)missing.push(`${k}${i+1}`)}));
+ if(getRadio('GSAFE')==null)missing.push('G-Safety');
+ risks.forEach((_,i)=>{if(!document.querySelector(`input[name="R${i+1}"]:checked`))missing.push(`R${i+1}`)});
+ return missing;
+}
+function levelRaw(x){if(x>=17)return['สูงมาก','high'];if(x>=13)return['ปานกลางถึงสูง','high'];if(x>=9)return['ปานกลางถึงต่ำ','mid'];return['ต่ำ','low']}
+function pathLevel(x){if(x>=80)return['เหมาะสมสูง','high'];if(x>=70)return['เหมาะสม แต่ควรตรวจจุดอ่อน','high'];if(x>=60)return['มีศักยภาพบางส่วน ควรพิจารณาทางเลือกคู่ขนาน','mid'];return['ความเหมาะสมปัจจุบันค่อนข้างต่ำ','low']}
+function domainScore(k){return domains[k].qs.reduce((s,_,i)=>s+getRadio(`${k}${i+1}`),0)}
+function pct(raw){return raw/20*100}
+function weighted(parts,scores){return parts.reduce((s,[k,w])=>s+pct(scores[k])*w,0)}
+function fmt(n){return Math.round(n*10)/10}
+
+let lastReport='';
+function calculateResults(){
+ const missing=allAnswered();if(missing.length){alert(`กรุณาตอบคำถามให้ครบก่อนคำนวณ\nยังขาด: ${missing.slice(0,12).join(', ')}${missing.length>12?' ...':''}`);return}
+ const scores={};Object.keys(domains).forEach(k=>scores[k]=domainScore(k));
+ const gsafe=getRadio('GSAFE');
+ const riskYes=risks.map((_,i)=>document.querySelector(`input[name="R${i+1}"]:checked`).value==='yes');
+
+ const paths={
+  'จภ. / โรงเรียนวิทยาศาสตร์จุฬาภรณราชวิทยาลัย': weighted([['B',.25],['F',.15],['G',.20],['E',.15],['H',.10],['J',.10],['A',.05]],scores),
+  'Gifted / ห้องเรียนพิเศษวิทย์–คณิต': weighted([['B',.30],['E',.20],['F',.15],['I',.15],['H',.10],['A',.10]],scores),
+  'English Program (EP)': weighted([['C',.30],['F',.15],['E',.15],['H',.15],['I',.10],['A',.10],['K',.05]],scores),
+  'โรงเรียนสาธิต': weighted([['D',.25],['I',.20],['E',.15],['F',.15],['A',.10],['H',.10],['K',.05]],scores),
+  'ห้องเรียนปกติ': weighted([['L',.25],['K',.15],['D',.15],['F',.15],['A',.10],['H',.10],['I',.10]],scores)
+ };
+
+ let dorm={label:'พร้อมแบบมีเงื่อนไข',cls:'warn',detail:'อาจอยู่ได้ แต่ควรเตรียมทักษะเฉพาะและทดลองแยกจากบ้านก่อน'};
+ if(scores.G>=16&&scores.F>=14&&scores.H>=14&&scores.J>=14&&gsafe>=4) dorm={label:'พร้อมสูง',cls:'ok',detail:'มีพื้นฐานความพร้อมสำหรับชีวิตหอ ควรทดลองค่าย/ค้างคืน 3–7 วันก่อนตัดสินใจจริง'};
+ if(scores.G<=11||getRadio('G1')<=2) dorm={label:'ยังไม่แนะนำ',cls:'bad',detail:'ความพร้อมด้านชีวิตหอหรือความต้องการของเด็กยังไม่เพียงพอ ไม่ควรใช้ผลการเรียนสูงมาหักล้างความไม่พร้อมนี้'};
+
+ const ds=document.getElementById('domainScores');ds.innerHTML='';
+ Object.entries(domains).forEach(([k,d])=>{const [lv,cl]=levelRaw(scores[k]);ds.insertAdjacentHTML('beforeend',`<div class="scorebox"><span class="pill">${k}</span><b>${scores[k]}/20</b><div>${d.short}</div><div class="${cl}">${lv}</div><div class="bar"><span style="width:${pct(scores[k])}%"></span></div></div>`)});
+ document.getElementById('dormResult').innerHTML=`<div class="alert ${dorm.cls}"><b>${dorm.label}</b><br>${dorm.detail}<br><span class="small">G=${scores.G}/20, F=${scores.F}/20, H=${scores.H}/20, J=${scores.J}/20, G-Safety=${gsafe}/5, G1=${getRadio('G1')}/5</span></div>`;
+
+ let arr=Object.entries(paths).sort((a,b)=>b[1]-a[1]);
+ let table='<table><thead><tr><th>อันดับ</th><th>เส้นทาง</th><th>คะแนน</th><th>แปลผล</th><th>เงื่อนไขสำคัญ</th></tr></thead><tbody>';
+ arr.forEach(([name,val],idx)=>{let [lv,cl]=pathLevel(val);let gate='—';if(name.startsWith('จภ.')&&getRadio('G1')<=2){gate='ด้านวิชาการอาจเหมาะ แต่ยังไม่แนะนำโรงเรียนประจำ เพราะเด็กยังไม่อยากอยู่หอ';cl='bad'}if(name.startsWith('English')&&scores.C<12){gate='Functional English ต่ำกว่า 12/20: ยังไม่แนะนำ EP เป็นตัวเลือกแรก';cl='bad'}table+=`<tr><td>${idx+1}</td><td><b>${name}</b></td><td>${fmt(val)}/100</td><td class="${cl}">${lv}</td><td>${gate}</td></tr>`});table+='</tbody></table>';
+ document.getElementById('pathResults').innerHTML=table;
+
+ const riskCount=riskYes.filter(Boolean).length;const severe=[1,2,3,6,7].filter(i=>riskYes[i]);
+ let riskHtml='';
+ if(riskCount===0)riskHtml='<div class="alert ok"><b>ยังไม่พบสัญญาณเตือนจากรายการคัดกรองนี้</b><br>ยังควรสังเกตความเครียดและสุขภาวะจริงต่อเนื่อง</div>';
+ else if(severe.length||riskCount>=3)riskHtml=`<div class="alert bad"><b>พบสัญญาณที่ควรให้ความสำคัญ ${riskCount} ข้อ</b><br>ไม่ควรเร่งตัดสินใจจากคะแนนวิชาการเพียงอย่างเดียว ควรพูดคุยกับเด็กเป็นการส่วนตัว และพิจารณาปรึกษาผู้เชี่ยวชาญหากอาการรุนแรงหรือต่อเนื่อง</div>`;
+ else riskHtml=`<div class="alert warn"><b>พบสัญญาณที่ควรติดตาม ${riskCount} ข้อ</b><br>ควรพูดคุยถึงสาเหตุและดูว่ากระทบการนอน การกิน การเรียน หรือชีวิตประจำวันหรือไม่</div>`;
+ const yesList=riskYes.map((v,i)=>v?`R${i+1}: ${risks[i]}`:null).filter(Boolean);if(yesList.length)riskHtml+=`<ul>${yesList.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+ document.getElementById('riskResult').innerHTML=riskHtml;
+
+ const top=arr[0], second=arr[1];
+ const highDomains=Object.keys(scores).sort((a,b)=>scores[b]-scores[a]).slice(0,3);
+ const lowDomains=Object.keys(scores).sort((a,b)=>scores[a]-scores[b]).slice(0,2);
+ const topStrengths=highDomains.map(k=>`${domains[k].short} (${scores[k]}/20)`).join(', ');
+ const develop=lowDomains.map(k=>`${domains[k].short} (${scores[k]}/20)`).join(', ');
+ let epText=scores.C>=17?'มีความพร้อมด้านภาษาอังกฤษเพื่อการใช้งานสูง EP สามารถเป็นตัวเลือกที่น่าพิจารณา':scores.C>=12?'มีพื้นฐานภาษาอังกฤษเพื่อการใช้งานในระดับพิจารณาได้ แต่ควรทดลองเรียนเนื้อหาวิชาการเป็นภาษาอังกฤษก่อน':'Functional English ยังต่ำกว่าเกณฑ์นำทาง 12/20 จึงยังไม่แนะนำ EP เป็นตัวเลือกแรก';
+ let giftedText=(scores.B>=17&&scores.E>=13&&scores.I>=13)?'มีองค์ประกอบสนับสนุนการเรียนสายวิชาการเข้มข้นค่อนข้างดี':(scores.B>=17&&(scores.E<13||scores.I<13))?'ความสนใจวิทย์–คณิตสูง แต่ควรระวังความมั่นใจและการรับมือเมื่ออยู่กับเพื่อนเก่งจำนวนมาก':'ควรพิจารณาความสนใจจริงและความทนต่อความยากเพิ่มเติมก่อนเลือกห้องวิทย์–คณิตเข้มข้น';
+ let regularText=scores.L>=17?'ความต้องการความสมดุลและพื้นที่ค้นหาตัวเองสูง ห้องปกติที่คุณภาพดีอาจเป็นตัวเลือกเชิงบวก ไม่ใช่ตัวเลือกสำรอง':'ควรเลือกสภาพแวดล้อมที่ความเข้มข้นพอดีกับสุขภาวะและแรงจูงใจของเด็ก';
+ const checkedParents=parentItems.map((x,i)=>document.querySelector(`input[name="P${i+1}"]`).checked).filter(Boolean).length;
+ const name=document.getElementById('studentName').value.trim()||'นักเรียน';
+ const date=document.getElementById('assessmentDate').value||'';
+ const summary=`รายงานสรุปผลการประเมินความพร้อมและความเหมาะสมในการเลือกเส้นทาง ม.1\nผู้ประเมิน: ${name}${date?` | วันที่ ${date}`:''}\n\n1) ภาพรวม\nเส้นทางที่ได้คะแนนความเหมาะสมสูงสุดในปัจจุบันคือ ${top[0]} (${fmt(top[1])}/100) รองลงมาคือ ${second[0]} (${fmt(second[1])}/100)\nจุดแข็งเด่น: ${topStrengths}\nด้านที่ควรพัฒนาหรือสำรวจเพิ่ม: ${develop}\n\n2) ความพร้อมอยู่หอ\nผล: ${dorm.label} — ${dorm.detail}\n\n3) ด้านวิชาการและความท้าทาย\n${giftedText}\n\n4) ด้านภาษาอังกฤษ\n${epText}\n\n5) ด้านสังคม อารมณ์ และการปรับตัว\nResilience ${scores.E}/20, Emotion/Help-seeking ${scores.H}/20, Social Adaptation ${scores.I}/20. ควรอ่านสามด้านนี้ร่วมกัน ไม่ใช้คะแนนวิชาการเพียงด้านเดียวตัดสิน\n\n6) สุขภาวะและความสมดุล\nWell-being ${scores.K}/20, Balance & Exploration ${scores.L}/20. ${regularText}\n\n7) ตัวบ่งชี้ความเสี่ยง\nตอบ “ใช่” ${riskCount} จาก 8 ข้อ${riskCount?` ได้แก่ ${yesList.join(' | ')}`:' ไม่พบสัญญาณเตือนจากรายการนี้'}\n\n8) ปัจจัยครอบครัว/เงื่อนไขจริง\nChecklist ผู้ปกครองยืนยันแล้ว ${checkedParents}/10 ข้อ ต้องตรวจเกณฑ์สมัคร เขตพื้นที่ ค่าใช้จ่าย การเดินทาง ระบบหอ และแผนสำรองจากข้อมูลจริงของโรงเรียนอีกครั้ง\n\n9) ข้อสรุปเพื่อการตัดสินใจ\nผลนี้ตอบ 4 เรื่องแยกกัน: Ability (เรียนไหวไหม), Readiness (พร้อมใช้ชีวิตแบบนั้นไหม), Preference (เด็กต้องการจริงไหม), Sustainability (อยู่ได้ดีต่อเนื่อง 3 ปีไหม)\nเด็กอาจสอบได้แต่ยังไม่เหมาะ เด็กอาจเก่งพอแต่ยังไม่พร้อมอยู่หอ และห้องปกติอาจเป็นสภาพแวดล้อมที่เหมาะที่สุดสำหรับเด็กบางคนได้\n\nคำแนะนำ: ใช้ผลนี้เป็นฐานพูดคุยร่วมกันระหว่างเด็ก ผู้ปกครอง และครู/ผู้เชี่ยวชาญด้านแนะแนว ไม่ใช้เป็นคำวินิจฉัยหรือเกณฑ์ตัดสินอนาคตเพียงอย่างเดียว`;
+ document.getElementById('professionalSummary').textContent=summary;lastReport=summary;
+ document.getElementById('results').style.display='block';document.getElementById('results').scrollIntoView({behavior:'smooth'});
+}
+
+function downloadReport(){if(!lastReport){alert('กรุณาคำนวณผลก่อนดาวน์โหลด');return}const blob=new Blob([lastReport],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='M1_school_fit_result.txt';a.click();URL.revokeObjectURL(a.href)}
+function resetResults(){document.getElementById('results').style.display='none';lastReport='';const now=new Date(); const localDate=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10); document.getElementById('assessmentDate').value=localDate;window.scrollTo({top:0,behavior:'smooth'})}
+</script>
+</body>
+</html>
