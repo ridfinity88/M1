@@ -1,301 +1,1645 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>แบบประเมินความพร้อมและความเหมาะสมในการเลือกเส้นทาง ม.1</title>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#06111d">
+  <title>Monthly Expenses</title>
+
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
   <style>
     :root{
-      --bg:#f6f7fb; --card:#fff; --ink:#1f2937; --muted:#667085; --line:#e5e7eb;
-      --accent:#3758f9; --accent-soft:#eef2ff; --ok:#137a4c; --warn:#9a6700; --bad:#b42318;
+      --bg:#06111d;
+      --panel:rgba(10,27,43,.90);
+      --panel2:#10283d;
+      --line:rgba(122,181,221,.18);
+      --cyan:#2bd7ff;
+      --green:#33efb0;
+      --yellow:#ffd166;
+      --red:#ff6779;
+      --text:#f4f8fb;
+      --muted:#8ea5b9;
+      --shadow:0 30px 80px rgba(0,0,0,.38);
+      font-family:Inter,"Noto Sans Thai","Segoe UI",Tahoma,sans-serif;
     }
+
     *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
-    .wrap{max-width:980px;margin:0 auto;padding:20px}
-    .hero{background:linear-gradient(135deg,#1d2f6f,#4c6fff);color:#fff;border-radius:20px;padding:28px;margin-bottom:18px}
-    .hero h1{margin:0 0 8px;font-size:clamp(24px,4vw,40px);line-height:1.2}.hero p{margin:6px 0;color:#eef2ff}
-    .notice{background:#fff8e7;border:1px solid #f3d48a;border-radius:14px;padding:14px 16px;margin-top:14px;color:#694100}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 6px 18px rgba(15,23,42,.04)}
-    h2{margin:0 0 10px;font-size:22px} h3{margin:16px 0 8px;font-size:18px}
-    label.small,.small{font-size:13px;color:var(--muted)}
-    input[type=text],input[type=date]{width:100%;padding:11px 12px;border:1px solid #cfd4dc;border-radius:10px;font-size:16px;background:#fff}
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.grid2{grid-template-columns:1fr}}
-    .legend{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.legend div{background:#f9fafb;border:1px solid var(--line);padding:8px;border-radius:10px;text-align:center;font-size:12px}
-    .q{border-top:1px solid var(--line);padding:14px 0}.q:first-of-type{border-top:none}.qtext{font-weight:600;margin-bottom:8px}
-    .scale{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.scale label{display:flex;align-items:center;justify-content:center;gap:5px;padding:8px 4px;border:1px solid var(--line);border-radius:10px;background:#fafafa;cursor:pointer;font-size:13px}.scale label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
-    .yn{display:flex;gap:10px;flex-wrap:wrap}.yn label{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:#fafafa;cursor:pointer}.yn label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
-    .actions{position:sticky;bottom:0;background:rgba(246,247,251,.92);backdrop-filter:blur(8px);padding:12px 0;display:flex;gap:10px;flex-wrap:wrap;z-index:5}
-    button{border:0;border-radius:11px;padding:12px 16px;font-size:15px;font-weight:700;cursor:pointer}.primary{background:var(--accent);color:#fff}.secondary{background:#fff;border:1px solid #cfd4dc;color:#273046}.danger{background:#fff1f0;color:var(--bad);border:1px solid #ffc9c5}
-    #results{display:none}.scoregrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}@media(max-width:800px){.scoregrid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.scoregrid{grid-template-columns:1fr}}
-    .scorebox{border:1px solid var(--line);border-radius:14px;padding:14px}.scorebox b{font-size:24px;display:block}.pill{display:inline-block;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700;background:#f2f4f7}.high{color:var(--ok)}.mid{color:var(--warn)}.low{color:var(--bad)}
-    table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid var(--line);text-align:left;padding:10px 8px;vertical-align:top}th{background:#f9fafb}
-    .bar{height:8px;background:#edf0f5;border-radius:99px;overflow:hidden;margin-top:7px}.bar>span{display:block;height:100%;background:#4c6fff}
-    .summary{white-space:pre-line;background:#fbfcff;border:1px solid #dfe5ff;border-radius:14px;padding:16px}
-    .alert{border-radius:12px;padding:12px 14px;margin:10px 0}.alert.ok{background:#ecfdf3;color:#05603a}.alert.warn{background:#fff7e6;color:#7a4b00}.alert.bad{background:#fff1f0;color:#8a1c13}
-    .footer{font-size:12px;color:var(--muted);margin:28px 0 12px;text-align:center}
-    @media print{body{background:#fff}.hero,.actions,#assessmentForm>.card:not(.identity),.footer{display:none!important}#results{display:block!important}.wrap{max-width:none}.card{box-shadow:none;break-inside:avoid}}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}
+    body{
+      min-height:100dvh;
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at 92% -5%,rgba(43,215,255,.17),transparent 30%),
+        radial-gradient(circle at -10% 92%,rgba(51,239,176,.09),transparent 34%),
+        var(--bg);
+    }
+
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.20;
+      background-image:
+        linear-gradient(rgba(100,163,205,.08) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(100,163,205,.08) 1px,transparent 1px);
+      background-size:28px 28px;
+      mask-image:linear-gradient(#000 20%,transparent 95%);
+    }
+
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    .hidden{display:none!important}
+
+    .ambient{
+      position:fixed;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      filter:blur(90px);
+      opacity:.14;
+      pointer-events:none;
+      animation:float 7s ease-in-out infinite alternate;
+    }
+    .ambient.a{background:var(--cyan);right:-120px;top:20%}
+    .ambient.b{background:var(--green);left:-140px;bottom:5%;animation-delay:-3s}
+
+    .shell{
+      width:min(100%,620px);
+      margin:0 auto;
+      padding:18px 15px calc(32px + env(safe-area-inset-bottom));
+    }
+
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin:8px 2px 16px;
+    }
+
+    .eyebrow{
+      margin:0 0 6px;
+      color:var(--cyan);
+      font-size:9px;
+      font-weight:950;
+      letter-spacing:.16em;
+    }
+
+    h1{
+      margin:0;
+      font-size:30px;
+      line-height:1.05;
+      letter-spacing:-.045em;
+    }
+
+    .profile{
+      max-width:180px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:8px;
+    }
+    .profile img{
+      width:35px;
+      height:35px;
+      border-radius:50%;
+      object-fit:cover;
+      background:#17334e;
+      border:1px solid rgba(43,215,255,.25);
+    }
+    .profile span{
+      color:var(--muted);
+      font-size:10px;
+      font-weight:800;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .status{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin:0 3px 11px;
+      color:#8fe4bf;
+      font-size:9px;
+      font-weight:950;
+      letter-spacing:.08em;
+    }
+
+    .status .dot{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 0 rgba(51,239,176,.5);
+      animation:pulse 1.8s infinite;
+    }
+
+    .panel{
+      position:relative;
+      overflow:hidden;
+      padding:21px;
+      border-radius:23px;
+      border:1px solid var(--line);
+      background:var(--panel);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(16px);
+    }
+
+    .panel:before{
+      content:"";
+      position:absolute;
+      left:0;right:0;top:0;
+      height:2px;
+      background:linear-gradient(90deg,transparent,var(--cyan),var(--green),transparent);
+      opacity:.75;
+    }
+
+    .panel-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:21px;
+    }
+
+    .panel-header h2{margin:0;font-size:17px}
+
+    .tech-tag{
+      font-size:8px;
+      color:var(--muted);
+      font-weight:950;
+      letter-spacing:.12em;
+      border:1px solid var(--line);
+      padding:5px 7px;
+      border-radius:999px;
+    }
+
+    .field{margin-bottom:16px}
+
+    .field>label{
+      display:block;
+      margin:0 0 7px;
+      color:#cedae4;
+      font-size:11px;
+      font-weight:850;
+    }
+
+    .input-wrap{
+      position:relative;
+      display:flex;
+      align-items:center;
+    }
+
+    .input-wrap input,
+    .input-wrap select{
+      appearance:none;
+      width:100%;
+      height:52px;
+      border-radius:14px;
+      border:1px solid rgba(126,177,216,.20);
+      outline:none;
+      background:rgba(3,13,23,.68);
+      color:var(--text);
+      padding:0 15px;
+      transition:.18s ease;
+    }
+
+    .input-wrap input:focus,
+    .input-wrap select:focus{
+      border-color:rgba(43,215,255,.65);
+      box-shadow:0 0 0 4px rgba(43,215,255,.07);
+      transform:translateY(-1px);
+    }
+
+    .input-wrap select{padding-right:42px}
+
+    .input-wrap:has(select):after{
+      content:"⌄";
+      position:absolute;
+      right:15px;
+      color:var(--cyan);
+      pointer-events:none;
+    }
+
+    .amount input{
+      padding-left:40px;
+      padding-right:55px;
+      font-size:20px;
+      font-weight:950;
+    }
+
+    .currency{
+      position:absolute;
+      left:15px;
+      color:var(--green);
+      font-weight:950;
+    }
+
+    .thb{
+      position:absolute;
+      right:14px;
+      color:var(--muted);
+      font-size:9px;
+      font-weight:950;
+    }
+
+    .upload-box{
+      display:block;
+      position:relative;
+      min-height:145px;
+      overflow:hidden;
+      border:1px dashed rgba(43,215,255,.34);
+      border-radius:17px;
+      background:
+        linear-gradient(145deg,rgba(43,215,255,.04),rgba(51,239,176,.02));
+      transition:.18s ease;
+    }
+
+    .upload-box:active{transform:scale(.995)}
+    .upload-box input{position:absolute;width:1px;height:1px;opacity:0}
+
+    .upload-empty{
+      min-height:145px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:18px;
+    }
+
+    .camera{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      color:var(--cyan);
+      font-size:23px;
+      border:1px solid rgba(43,215,255,.26);
+      background:rgba(43,215,255,.04);
+      margin-bottom:10px;
+    }
+
+    .upload-empty strong{font-size:12px}
+    .upload-empty small{
+      color:var(--muted);
+      margin-top:5px;
+      font-size:9px;
+    }
+
+    .preview{
+      position:relative;
+      height:220px;
+    }
+
+    .preview img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .remove-image{
+      position:absolute;
+      right:10px;
+      top:10px;
+      width:35px;
+      height:35px;
+      border:0;
+      border-radius:50%;
+      background:rgba(0,0,0,.72);
+      color:#fff;
+      font-size:22px;
+    }
+
+    .submit{
+      width:100%;
+      height:56px;
+      border:0;
+      border-radius:15px;
+      margin-top:8px;
+      color:#03131d;
+      font-weight:950;
+      background:linear-gradient(90deg,var(--cyan),var(--green));
+      box-shadow:0 14px 38px rgba(43,215,255,.14);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .submit:disabled{opacity:.58;cursor:wait}
+
+    .submit:before{
+      content:"";
+      position:absolute;
+      top:-60%;
+      left:-35%;
+      width:28%;
+      height:220%;
+      transform:rotate(22deg);
+      background:rgba(255,255,255,.34);
+      filter:blur(4px);
+      animation:shine 3.4s infinite;
+    }
+
+    .fineprint{
+      margin:11px 4px 0;
+      text-align:center;
+      color:var(--muted);
+      font-size:9px;
+      line-height:1.55;
+    }
+
+    /* ACCESS GATE */
+    .gate{
+      min-height:calc(100dvh - 36px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .gate-card{
+      width:100%;
+      padding:28px 22px;
+      border-radius:24px;
+      text-align:center;
+      border:1px solid var(--line);
+      background:var(--panel);
+      box-shadow:var(--shadow);
+    }
+
+    .gate-icon{
+      width:66px;
+      height:66px;
+      border-radius:20px;
+      display:grid;
+      place-items:center;
+      margin:0 auto 16px;
+      font-size:28px;
+      color:var(--cyan);
+      background:rgba(43,215,255,.06);
+      border:1px solid rgba(43,215,255,.25);
+    }
+
+    .gate.denied .gate-icon{
+      color:var(--red);
+      background:rgba(255,103,121,.07);
+      border-color:rgba(255,103,121,.24);
+    }
+
+    .gate-card h2{margin:0 0 8px;font-size:22px}
+    .gate-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.7;
+    }
+
+    .line-open{
+      width:100%;
+      height:50px;
+      margin-top:18px;
+      border:0;
+      border-radius:14px;
+      background:#06c755;
+      color:#fff;
+      font-weight:950;
+    }
+
+    /* MODAL */
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:50;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+    }
+
+    .modal-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(1,6,10,.78);
+      backdrop-filter:blur(8px);
+    }
+
+    .modal-sheet{
+      position:relative;
+      width:min(100%,620px);
+      max-height:95dvh;
+      overflow:auto;
+      padding:18px 15px calc(23px + env(safe-area-inset-bottom));
+      border-radius:27px 27px 0 0;
+      border:1px solid rgba(125,182,219,.22);
+      background:linear-gradient(180deg,#10243a,#07131f);
+      animation:sheetUp .34s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .success-head{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      margin:2px 3px 14px;
+    }
+
+    .success-check{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      color:var(--green);
+      background:rgba(51,239,176,.10);
+      border:1px solid rgba(51,239,176,.22);
+      font-size:22px;
+      font-weight:950;
+    }
+
+    .success-head h2{margin:0;font-size:22px}
+
+    /* CARD PNG */
+    .expense-card{
+      width:100%;
+      color:#eff8ff;
+      border-radius:23px;
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 92% 10%,rgba(43,215,255,.26),transparent 30%),
+        linear-gradient(145deg,#0c263d,#081522 62%,#0c2031);
+      border:1px solid rgba(112,197,239,.31);
+      box-shadow:0 24px 55px rgba(0,0,0,.35);
+    }
+
+    .expense-card:after{
+      content:"";
+      position:absolute;
+      width:185px;
+      height:185px;
+      right:-92px;
+      bottom:-92px;
+      border:1px solid rgba(43,215,255,.12);
+      border-radius:44px;
+      transform:rotate(25deg);
+    }
+
+    .card-top,.card-amount,.card-grid,.card-foot{
+      position:relative;
+      z-index:1;
+    }
+
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .card-top p{
+      margin:0 0 4px;
+      color:#81d4ee;
+      font-size:8px;
+      font-weight:950;
+      letter-spacing:.16em;
+    }
+
+    .card-top h3{
+      margin:0;
+      font-size:20px;
+    }
+
+    .card-badge{
+      align-self:flex-start;
+      color:#61f4bf;
+      font-size:7px;
+      font-weight:950;
+      letter-spacing:.12em;
+      border:1px solid rgba(97,244,191,.30);
+      padding:6px 8px;
+      border-radius:999px;
+    }
+
+    .card-amount{
+      display:flex;
+      align-items:flex-start;
+      gap:7px;
+      margin:29px 0 24px;
+    }
+
+    .card-amount span{
+      margin-top:7px;
+      color:var(--green);
+      font-size:18px;
+      font-weight:950;
+    }
+
+    .card-amount strong{
+      font-size:44px;
+      line-height:1;
+      letter-spacing:-.055em;
+    }
+
+    .card-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .card-grid>div{
+      min-width:0;
+      padding:11px;
+      border-radius:12px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .card-grid span{
+      display:block;
+      color:#7e99ad;
+      font-size:7px;
+      font-weight:950;
+      letter-spacing:.10em;
+      margin-bottom:5px;
+    }
+
+    .card-grid strong{
+      display:block;
+      font-size:11px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .card-foot{
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      margin-top:17px;
+      padding-top:12px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:#6c879a;
+      font-size:6px;
+      font-weight:950;
+      letter-spacing:.11em;
+    }
+
+    .modal-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:9px;
+      margin-top:14px;
+    }
+
+    .action-btn{
+      height:53px;
+      border-radius:14px;
+      border:0;
+      font-weight:950;
+    }
+
+    .close-btn{
+      color:#e2eff8;
+      background:#132b42;
+      border:1px solid rgba(142,190,225,.16);
+    }
+
+    .share-btn{
+      color:#fff;
+      background:#06c755;
+    }
+
+    .share-btn:disabled{opacity:.58;cursor:wait}
+
+    .send-result{
+      min-height:15px;
+      margin:10px 4px 0;
+      text-align:center;
+      color:#8fe4bf;
+      font-size:10px;
+      line-height:1.5;
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:calc(18px + env(safe-area-inset-bottom));
+      transform:translateX(-50%);
+      z-index:100;
+      width:min(calc(100% - 30px),540px);
+      padding:12px 14px;
+      border-radius:13px;
+      text-align:center;
+      color:#fff;
+      background:#122a40;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      font-size:11px;
+    }
+
+    @keyframes pulse{
+      70%{box-shadow:0 0 0 9px rgba(51,239,176,0)}
+      100%{box-shadow:none}
+    }
+
+    @keyframes shine{
+      0%,48%{left:-35%}
+      75%,100%{left:130%}
+    }
+
+    @keyframes float{
+      from{transform:translateY(-12px)}
+      to{transform:translateY(20px)}
+    }
+
+    @keyframes sheetUp{
+      from{transform:translateY(100%)}
+      to{transform:none}
+    }
+
+    @media(min-width:700px){
+      .shell{padding-top:32px}
+      .modal{align-items:center}
+      .modal-sheet{
+        border-radius:27px;
+        max-height:92dvh;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *,*:before,*:after{
+        animation:none!important;
+        transition:none!important;
+      }
+    }
   </style>
 </head>
+
 <body>
-<div class="wrap">
-  <section class="hero">
-    <h1>แบบประเมินความพร้อมและความเหมาะสมในการเลือกเส้นทาง ม.1</h1>
-    <p>สำหรับนักเรียน ป.6 อายุประมาณ 11–12 ปี | M1 School-Fit & Readiness Assessment – Child Version</p>
-    <div class="notice">แบบนี้เป็นเครื่องมือคัดกรองเพื่อการแนะแนวและตัดสินใจร่วมกัน ไม่ใช่แบบวินิจฉัยทางจิตวิทยาหรือจิตเวช และไม่ควรใช้คะแนนเพียงอย่างเดียวตัดสินอนาคตของเด็ก</div>
-  </section>
+  <div class="ambient a"></div>
+  <div class="ambient b"></div>
 
-  <form id="assessmentForm">
-    <section class="card identity">
-      <h2>ข้อมูลผู้ประเมิน</h2>
-      <div class="grid2">
-        <div><label class="small">ชื่อนักเรียน (ไม่บังคับ)</label><input id="studentName" type="text" placeholder="ชื่อเล่นหรือชื่อที่ต้องการแสดงในรายงาน"></div>
-        <div><label class="small">วันที่ทำแบบประเมิน</label><input id="assessmentDate" type="date"></div>
+  <main class="shell">
+
+    <!-- Loading -->
+    <section id="loadingGate" class="gate">
+      <div class="gate-card">
+        <div class="gate-icon">⌁</div>
+        <p class="eyebrow">LINE ACCESS CONTROL</p>
+        <h2>กำลังตรวจสอบสิทธิ์</h2>
+        <p>กำลังตรวจสอบ LINE Account และสิทธิ์สมาชิก...</p>
       </div>
     </section>
 
-    <section class="card">
-      <h2>วิธีตอบ</h2>
-      <p>ตอบตามตัวเองในช่วงประมาณ 3–6 เดือนที่ผ่านมา ไม่ต้องตอบเพื่อให้พ่อแม่หรือครูพอใจ</p>
-      <div class="legend"><div>1<br>ไม่เหมือนฉันเลย</div><div>2<br>ไม่ค่อยเหมือนฉัน</div><div>3<br>บางครั้งใช่</div><div>4<br>ค่อนข้างเหมือนฉัน</div><div>5<br>เหมือนฉันมาก</div></div>
-    </section>
-
-    <div id="questionSections"></div>
-
-    <section class="card">
-      <h2>คำถามสำคัญพิเศษเรื่องการอยู่หอ</h2>
-      <div class="q">
-        <div class="qtext">G-Safety: ถ้าพ่อแม่บอกว่าอยากให้ฉันไปอยู่หอ แต่ฉันไม่อยากไป ฉันกล้าบอกพวกเขาตรงๆ</div>
-        <div class="scale" id="gsafetyScale"></div>
+    <!-- Denied -->
+    <section id="deniedGate" class="gate denied hidden">
+      <div class="gate-card">
+        <div class="gate-icon">!</div>
+        <p class="eyebrow" style="color:var(--red)">ACCESS DENIED</p>
+        <h2>คุณไม่มีสิทธิ์ใช้งาน</h2>
+        <p id="deniedText">กรุณาเปิดฟอร์มจาก LINE Group ที่ได้รับอนุญาต</p>
+        <button id="openInLineBtn" class="line-open" type="button">
+          เปิดด้วยแอป LINE
+        </button>
       </div>
     </section>
 
-    <section class="card">
-      <h2>ตัวบ่งชี้ความเสี่ยงที่คะแนนรวมไม่ควรกลบ</h2>
-      <p class="small">ตอบ “ใช่” หากเกิดขึ้นบ่อยหรือมีผลต่อชีวิตจริงในช่วงที่ผ่านมา</p>
-      <div id="riskQuestions"></div>
+    <!-- App -->
+    <section id="appView" class="hidden">
+
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">ENGINEERING COST CONTROL</p>
+          <h1>Monthly Expenses</h1>
+        </div>
+
+        <div class="profile">
+          <img id="profileImage" alt="">
+          <span id="profileName">LINE User</span>
+        </div>
+      </header>
+
+      <div class="status">
+        <span class="dot"></span>
+        LINE VERIFIED • GROUP MEMBER • SECURE
+      </div>
+
+      <form id="expenseForm" class="panel">
+
+        <div class="panel-header">
+          <h2>Expense Record</h2>
+          <span class="tech-tag">ENGINEERING</span>
+        </div>
+
+        <div class="field">
+          <label for="expenseDate">วัน / เดือน / ปี</label>
+          <div class="input-wrap">
+            <input id="expenseDate" type="date" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="workType">ประเภทงาน</label>
+          <div class="input-wrap">
+            <select id="workType" required>
+              <option value="" selected disabled>เลือกประเภทงาน</option>
+              <option value="CBM">CBM</option>
+              <option value="Project">Project</option>
+              <option value="Other">Other</option>
+              <option value="PM">PM</option>
+              <option value="Breakdown">Breakdown</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="expenseCategory">หมวดค่าใช้จ่าย</label>
+          <div class="input-wrap">
+            <select id="expenseCategory" required>
+              <option value="" selected disabled>เลือกหมวดค่าใช้จ่าย</option>
+              <option value="Machine">Machine</option>
+              <option value="ไฟฟ้า">ไฟฟ้า</option>
+              <option value="ห้องเครื่อง">ห้องเครื่อง</option>
+              <option value="Fac">Fac</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="amount">ระบุจำนวนเงิน</label>
+          <div class="input-wrap amount">
+            <span class="currency">฿</span>
+            <input
+              id="amount"
+              type="number"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+              placeholder="0.00"
+              required
+            >
+            <span class="thb">THB</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>แนบรูป</label>
+
+          <label class="upload-box" for="imageInput">
+
+            <input
+              id="imageInput"
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              capture="environment"
+            >
+
+            <div id="uploadEmpty" class="upload-empty">
+              <span class="camera">◎</span>
+              <strong>แตะเพื่อถ่ายรูปหรือเลือกรูป</strong>
+              <small>ระบบจะลดขนาดรูปก่อนบันทึกอัตโนมัติ</small>
+            </div>
+
+            <div id="previewWrap" class="preview hidden">
+              <img id="imagePreview" alt="รูปแนบ">
+              <button id="removeImageBtn" class="remove-image" type="button">×</button>
+            </div>
+
+          </label>
+        </div>
+
+        <button id="submitBtn" class="submit" type="submit">
+          <span id="submitText">บันทึกข้อมูล</span>
+        </button>
+
+        <p class="fineprint">
+          ข้อมูลจะถูกบันทึกลง Google Sheet และรูปหลักฐานเก็บใน Google Drive
+        </p>
+
+      </form>
     </section>
+  </main>
 
-    <section class="card">
-      <h2>Checklist ผู้ปกครอง</h2>
-      <p class="small">ส่วนนี้ไม่รวมเป็นคะแนนบุคลิกภาพของเด็ก แต่ใช้ประกอบการตัดสินใจ</p>
-      <div id="parentChecklist"></div>
-    </section>
+  <!-- Success Modal -->
+  <section id="successModal" class="modal hidden">
+    <div class="modal-backdrop"></div>
 
-    <div class="actions">
-      <button class="primary" type="button" onclick="calculateResults()">คำนวณและสรุปผล</button>
-      <button class="secondary" type="button" onclick="window.print()">พิมพ์ / บันทึกเป็น PDF</button>
-      <button class="secondary" type="button" onclick="downloadReport()">ดาวน์โหลดสรุปผล .txt</button>
-      <button class="danger" type="reset" onclick="setTimeout(resetResults,0)">ล้างคำตอบ</button>
-    </div>
-  </form>
+    <div class="modal-sheet">
 
-  <section id="results">
-    <div class="card">
-      <h2>ผลคะแนนรายด้าน</h2>
-      <div id="domainScores" class="scoregrid"></div>
-    </div>
-    <div class="card">
-      <h2>ความพร้อมในการอยู่หอ</h2>
-      <div id="dormResult"></div>
-    </div>
-    <div class="card">
-      <h2>Ranking ความเหมาะสมของเส้นทาง</h2>
-      <div id="pathResults"></div>
-    </div>
-    <div class="card">
-      <h2>ตัวบ่งชี้ความเสี่ยง</h2>
-      <div id="riskResult"></div>
-    </div>
-    <div class="card">
-      <h2>สรุปผลเชิงวิชาชีพ</h2>
-      <div id="professionalSummary" class="summary"></div>
-    </div>
-    <div class="card">
-      <h2>ข้อเตือนในการใช้ผล</h2>
-      <ul>
-        <li>ผลนี้สะท้อน “ความเหมาะสม ณ ปัจจุบัน” ไม่ใช่ความสามารถถาวรของเด็ก</li>
-        <li>ต้องตรวจเกณฑ์รับสมัคร เขตพื้นที่ ค่าใช้จ่าย และกำหนดการจากประกาศทางการของโรงเรียนในปีที่สมัคร</li>
-        <li>ถ้ามีสัญญาณความเครียดรุนแรง ต่อเนื่อง หรือกระทบการกิน การนอน การเรียน หรือชีวิตประจำวัน ควรปรึกษาผู้เชี่ยวชาญที่เหมาะสม</li>
-        <li>สำหรับการใช้งานเชิงวิจัยหรือโรงเรียน ควรตรวจความตรงเชิงเนื้อหา ทดลองใช้ และศึกษาความเชื่อมั่น/โครงสร้างองค์ประกอบก่อน</li>
-      </ul>
+      <div class="success-head">
+        <span class="success-check">✓</span>
+        <div>
+          <p class="eyebrow">SUBMISSION COMPLETE</p>
+          <h2>บันทึกสำเร็จ</h2>
+        </div>
+      </div>
+
+      <!-- Capture this element to PNG -->
+      <div id="shareCard" class="expense-card">
+
+        <div class="card-top">
+          <div>
+            <p>ENGINEERING EXPENSE</p>
+            <h3>Monthly Expenses</h3>
+          </div>
+          <span class="card-badge">RECORDED</span>
+        </div>
+
+        <div class="card-amount">
+          <span>฿</span>
+          <strong id="cardAmount">0.00</strong>
+        </div>
+
+        <div class="card-grid">
+          <div>
+            <span>DATE</span>
+            <strong id="cardDate">-</strong>
+          </div>
+
+          <div>
+            <span>WORK TYPE</span>
+            <strong id="cardWorkType">-</strong>
+          </div>
+
+          <div>
+            <span>CATEGORY</span>
+            <strong id="cardCategory">-</strong>
+          </div>
+
+          <div>
+            <span>BY</span>
+            <strong id="cardUser">-</strong>
+          </div>
+        </div>
+
+        <div class="card-foot">
+          <span id="cardReference">REF: -</span>
+          <span>MONTHLY EXPENSES</span>
+        </div>
+
+      </div>
+
+      <div class="modal-actions">
+
+        <button id="closeBtn" class="action-btn close-btn" type="button">
+          ปิด
+        </button>
+
+        <button id="shareLineBtn" class="action-btn share-btn" type="button">
+          แชร์ไป LINE กลุ่ม
+        </button>
+
+      </div>
+
+      <p id="sendResult" class="send-result"></p>
+
     </div>
   </section>
 
-  <div class="footer">ข้อมูลคำตอบถูกประมวลผลภายในเบราว์เซอร์ของผู้ใช้ ไฟล์นี้ไม่ส่งข้อมูลไปยังเซิร์ฟเวอร์ใดโดยอัตโนมัติ</div>
-</div>
-<script>
-const domains = {
- A:{title:'A — แรงจูงใจภายในและความเป็นเจ้าของการตัดสินใจ',short:'แรงจูงใจ/Ownership',qs:[
-  'ถ้าฉันสนใจเรื่องหนึ่ง ฉันอยากเรียนรู้ต่อแม้ไม่มีใครสั่ง',
-  'ฉันมีเหตุผลของตัวเองว่าอยากเรียนต่อโรงเรียนแบบไหน',
-  'ฉันกล้าบอกพ่อแม่ได้ว่าฉันอยากหรือไม่อยากเรียนที่ไหน',
-  'เวลาตัดสินใจเรื่องโรงเรียน ฉันอยากมีส่วนร่วมจริงๆ']},
- B:{title:'B — ความสนใจวิทยาศาสตร์และคณิตศาสตร์',short:'STEM Interest',qs:[
-  'ฉันชอบหาคำตอบว่า “ทำไม” สิ่งต่างๆ จึงเกิดขึ้น',
-  'ฉันสนุกกับโจทย์คณิตศาสตร์หรือวิทยาศาสตร์ที่ต้องคิดหลายขั้น',
-  'บางครั้งฉันอ่าน ดูคลิป ทดลอง หรือค้นเรื่องวิทย์–คณิตเองโดยไม่มีการบ้าน',
-  'ถ้าเจอเรื่องวิทย์หรือคณิตที่น่าสนใจ ฉันสามารถอยู่กับมันได้นาน']},
- C:{title:'C — ภาษาอังกฤษเพื่อการใช้งาน',short:'Functional English',qs:[
-  'ฉันฟังคลิปหรือการ์ตูนภาษาอังกฤษแล้วเข้าใจใจความสำคัญได้',
-  'ฉันกล้าพูดภาษาอังกฤษ แม้จะพูดผิดบ้าง',
-  'ถ้าครูอธิบายวิชาคณิตหรือวิทยาศาสตร์เป็นภาษาอังกฤษ ฉันคิดว่าฉันพอตามได้',
-  'เวลาไม่เข้าใจภาษาอังกฤษ ฉันพยายามเดาความหมายหรือถามต่อ ไม่หยุดเรียนทันที']},
- D:{title:'D — ความสนใจกว้าง ความคิดสร้างสรรค์ และกิจกรรม',short:'Breadth & Activities',qs:[
-  'ฉันสนใจหลายเรื่อง ไม่ได้ชอบเพียงวิชาเดียว',
-  'ฉันชอบกิจกรรม เช่น กีฬา ดนตรี ศิลปะ ชมรม การแสดง หรือกิจกรรมกลุ่ม',
-  'ฉันสนุกกับการเรียนที่ให้คิดหลายแบบและเชื่อมโยงหลายวิชา',
-  'ฉันอยากมีโอกาสลองสิ่งใหม่ๆ เพื่อค้นหาว่าตัวเองชอบอะไร']},
- E:{title:'E — ความพยายามและการรับมือกับความยาก',short:'Resilience',qs:[
-  'เมื่อทำโจทย์ยากผิด ฉันมักอยากรู้ว่าผิดตรงไหน',
-  'เมื่อเจอเพื่อนที่เก่งกว่าฉัน ฉันยังสามารถเรียนต่อโดยไม่รู้สึกว่าตัวเองไม่มีค่า',
-  'เมื่อคะแนนไม่ดี ฉันสามารถกลับมาพยายามใหม่ได้',
-  'ฉันรับได้ว่าบางครั้งต้องใช้เวลานานกว่าจะเก่งเรื่องหนึ่ง']},
- F:{title:'F — การวางแผนและจัดการตัวเอง',short:'Executive Function',qs:[
-  'ฉันเตรียมของไปโรงเรียนได้โดยไม่ต้องให้ผู้ใหญ่เตือนทุกอย่าง',
-  'ฉันพอจัดเวลาเรียน เล่น พัก และนอนได้ด้วยตัวเอง',
-  'ถ้ามีงานหลายอย่าง ฉันรู้ว่าควรเริ่มจากอะไร',
-  'ฉันตื่น เตรียมตัว และรับผิดชอบของใช้ของตัวเองได้ค่อนข้างดี']},
- G:{title:'G — ความพร้อมในการอยู่หอและใช้ชีวิตห่างครอบครัว',short:'Dorm Readiness',qs:[
-  'ถ้ามีเหตุผลที่ฉันเห็นด้วย ฉัน “อยากลอง” ใช้ชีวิตในหอพัก',
-  'ฉันเคยนอนค้างนอกบ้านหรือห่างพ่อแม่แล้วสามารถดูแลตัวเองได้',
-  'ฉันดูแลเรื่องอาบน้ำ เสื้อผ้า ของใช้ส่วนตัว และความสะอาดของตัวเองได้',
-  'ถ้าคิดถึงบ้าน ฉันคิดว่ายังสามารถไปเรียน ทำกิจกรรม และใช้ชีวิตประจำวันต่อได้']},
- H:{title:'H — การจัดการอารมณ์และการขอความช่วยเหลือ',short:'Emotion & Help-seeking',qs:[
-  'เมื่อเครียด ฉันมีวิธีทำให้ตัวเองสงบลงได้',
-  'ถ้ามีปัญหาที่โรงเรียน ฉันรู้ว่าจะไปขอความช่วยเหลือจากใคร',
-  'ฉันสามารถบอกผู้ใหญ่ได้เมื่อรู้สึกเหนื่อย กังวล หรือรับไม่ไหว',
-  'หลังจากวันที่แย่ ฉันมักกลับมาเป็นปกติได้ภายในเวลาที่เหมาะสม']},
- I:{title:'I — การปรับตัวทางสังคมและการแข่งขัน',short:'Social Adaptation',qs:[
-  'ฉันสามารถทำงานกับเพื่อนที่นิสัยต่างจากฉันได้',
-  'ฉันรู้จักเพื่อนใหม่ได้โดยไม่ยากเกินไป',
-  'เวลาคนอื่นทำได้ดีกว่าฉัน ฉันไม่จำเป็นต้องคิดว่าตัวเองแย่',
-  'ฉันรับฟังคำแนะนำหรือคำวิจารณ์โดยไม่โกรธหรือเสียใจนานเกินไป']},
- J:{title:'J — ความสามารถในการใช้ชีวิตโดยไม่ต้องมีพ่อแม่กำกับตลอดเวลา',short:'Daily Independence',qs:[
-  'ฉันทำการบ้านได้แม้ไม่มีผู้ใหญ่นั่งเฝ้า',
-  'ฉันจำสิ่งที่ต้องทำในแต่ละวันได้ค่อนข้างดี',
-  'เมื่อมีปัญหาเล็กๆ ฉันลองแก้เองก่อน แล้วจึงขอความช่วยเหลือเมื่อจำเป็น',
-  'ฉันรับผิดชอบผลของการตัดสินใจของตัวเองได้']},
- K:{title:'K — สุขภาวะและความสามารถรับภาระ',short:'Well-being & Load',qs:[
-  'ในวันเรียนปกติ ฉันได้นอนเพียงพอและตื่นมาไม่เหนื่อยเกินไป',
-  'หลังเลิกเรียน ฉันยังมีพลังพอสำหรับการบ้าน พักผ่อน หรือกิจกรรมที่ชอบ',
-  'เมื่อมีการบ้านหรือสอบหลายอย่าง ฉันยังรับประทานอาหารและนอนได้ค่อนข้างปกติ',
-  'ฉันคิดว่าการเรียนที่ยากขึ้นจะท้าทายฉัน แต่ไม่ทำให้ชีวิตมีแต่ความเครียด']},
- L:{title:'L — ความต้องการความสมดุลและพื้นที่ค้นหาตัวเอง',short:'Balance & Exploration',qs:[
-  'ฉันอยากมีเวลาเรียนและมีเวลาทำสิ่งอื่นที่ชอบด้วย',
-  'ตอนนี้ฉันยังอยากลองหลายอย่างก่อนตัดสินใจว่าชอบด้านไหนที่สุด',
-  'การมีชีวิตที่มีทั้งเรียน เพื่อน ครอบครัว และงานอดิเรกสำคัญกับฉัน',
-  'ฉันไม่จำเป็นต้องอยู่ในห้องที่แข่งขันสูงที่สุดเพื่อรู้สึกว่าตัวเองประสบความสำเร็จ']}
-};
+  <div id="toast" class="toast hidden"></div>
 
-const risks = [
- 'ช่วงหลังฉันไม่อยากไปโรงเรียนบ่อยมาก',
- 'ฉันนอนไม่หลับหรือกินไม่ได้บ่อยเมื่อเครียดเรื่องเรียน',
- 'ฉันกลัวทำให้พ่อแม่ผิดหวังจนไม่กล้าบอกว่าอยากเรียนที่ไหน',
- 'ฉันคิดว่าถ้าสอบไม่ติด แปลว่าฉันไม่เก่งหรือไม่มีคุณค่า',
- 'ฉันต้องเรียนหรือติวจนแทบไม่มีเวลาพัก',
- 'ฉันไม่กล้าขอความช่วยเหลือเมื่อมีปัญหา',
- 'การแข่งขันกับเพื่อนทำให้ฉันรู้สึกแย่กับตัวเองเกือบทุกวัน',
- 'ฉันยอมเลือกโรงเรียนตามที่ผู้ใหญ่ต้องการ แม้ตัวเองไม่ต้องการ'
-];
-const parentItems = [
- 'ผลการเรียน/คุณสมบัติตรงตามเกณฑ์สมัครของโรงเรียนจริง',
- 'โรงเรียนอยู่ในเขตหรือพื้นที่รับสมัครที่กำหนด',
- 'ค่าใช้จ่ายตลอด 3 ปีอยู่ในระดับที่ครอบครัวรับได้',
- 'เวลาเดินทางไป–กลับไม่กระทบการนอนและคุณภาพชีวิต',
- 'มีแผนรับมือหากเด็กป่วยหรือมีเหตุฉุกเฉิน',
- 'ถ้าอยู่หอ มีระบบครูหอ/ผู้ดูแล/การติดต่อครอบครัวเหมาะสม',
- 'โรงเรียนมีระบบช่วยเหลือนักเรียนเมื่อมีปัญหาการเรียนหรืออารมณ์',
- 'เด็กมีโอกาสไปดูสถานที่ พูดกับรุ่นพี่ หรือทดลองบรรยากาศก่อนตัดสินใจ',
- 'ผู้ปกครองและเด็กเห็นตรงกันในระดับที่ยอมรับได้',
- 'มีแผนสำรองอย่างน้อย 1–2 ทางเลือก'
-];
+  <script>
+    // LIFF ID ถูกส่งมาจาก Script Properties ฝั่ง Apps Script
+    const LIFF_ID = '<?= LIFF_ID ?>';
+    const LIFF_URL = 'https://liff.line.me/' + LIFF_ID;
 
-function render(){
- const qs=document.getElementById('questionSections');
- Object.entries(domains).forEach(([key,d])=>{
-   const s=document.createElement('section'); s.className='card';
-   s.innerHTML=`<h2>${d.title}</h2><div class="small">คะแนนเต็ม 20</div>`;
-   d.qs.forEach((q,i)=>{
-     const wrap=document.createElement('div');wrap.className='q';
-     wrap.innerHTML=`<div class="qtext">${key}${i+1}. ${q}</div><div class="scale">${[1,2,3,4,5].map(v=>`<label><input type="radio" name="${key}${i+1}" value="${v}"> ${v}</label>`).join('')}</div>`;
-     s.appendChild(wrap);
-   });qs.appendChild(s);
- });
- document.getElementById('gsafetyScale').innerHTML=[1,2,3,4,5].map(v=>`<label><input type="radio" name="GSAFE" value="${v}"> ${v}</label>`).join('');
- const r=document.getElementById('riskQuestions'); risks.forEach((q,i)=>r.insertAdjacentHTML('beforeend',`<div class="q"><div class="qtext">R${i+1}. ${q}</div><div class="yn"><label><input type="radio" name="R${i+1}" value="yes"> ใช่</label><label><input type="radio" name="R${i+1}" value="no"> ไม่ใช่</label></div></div>`));
- const p=document.getElementById('parentChecklist'); parentItems.forEach((q,i)=>p.insertAdjacentHTML('beforeend',`<div class="q"><label><input type="checkbox" name="P${i+1}"> ${q}</label></div>`));
- const now=new Date(); const localDate=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10); document.getElementById('assessmentDate').value=localDate;
-}
-render();
+    const state = {
+      idToken: '',
+      user: null,
+      authorized: false,
+      evidenceDataUrl: '',
+      lastSubmission: null
+    };
 
-function getRadio(name){const el=document.querySelector(`input[name="${name}"]:checked`);return el?Number(el.value):null}
-function allAnswered(){
- let missing=[];Object.entries(domains).forEach(([k,d])=>d.qs.forEach((_,i)=>{if(getRadio(`${k}${i+1}`)==null)missing.push(`${k}${i+1}`)}));
- if(getRadio('GSAFE')==null)missing.push('G-Safety');
- risks.forEach((_,i)=>{if(!document.querySelector(`input[name="R${i+1}"]:checked`))missing.push(`R${i+1}`)});
- return missing;
-}
-function levelRaw(x){if(x>=17)return['สูงมาก','high'];if(x>=13)return['ปานกลางถึงสูง','high'];if(x>=9)return['ปานกลางถึงต่ำ','mid'];return['ต่ำ','low']}
-function pathLevel(x){if(x>=80)return['เหมาะสมสูง','high'];if(x>=70)return['เหมาะสม แต่ควรตรวจจุดอ่อน','high'];if(x>=60)return['มีศักยภาพบางส่วน ควรพิจารณาทางเลือกคู่ขนาน','mid'];return['ความเหมาะสมปัจจุบันค่อนข้างต่ำ','low']}
-function domainScore(k){return domains[k].qs.reduce((s,_,i)=>s+getRadio(`${k}${i+1}`),0)}
-function pct(raw){return raw/20*100}
-function weighted(parts,scores){return parts.reduce((s,[k,w])=>s+pct(scores[k])*w,0)}
-function fmt(n){return Math.round(n*10)/10}
+    const $ = id => document.getElementById(id);
 
-let lastReport='';
-function calculateResults(){
- const missing=allAnswered();if(missing.length){alert(`กรุณาตอบคำถามให้ครบก่อนคำนวณ\nยังขาด: ${missing.slice(0,12).join(', ')}${missing.length>12?' ...':''}`);return}
- const scores={};Object.keys(domains).forEach(k=>scores[k]=domainScore(k));
- const gsafe=getRadio('GSAFE');
- const riskYes=risks.map((_,i)=>document.querySelector(`input[name="R${i+1}"]:checked`).value==='yes');
+    function todayLocal() {
+      const d = new Date();
 
- const paths={
-  'จภ. / โรงเรียนวิทยาศาสตร์จุฬาภรณราชวิทยาลัย': weighted([['B',.25],['F',.15],['G',.20],['E',.15],['H',.10],['J',.10],['A',.05]],scores),
-  'Gifted / ห้องเรียนพิเศษวิทย์–คณิต': weighted([['B',.30],['E',.20],['F',.15],['I',.15],['H',.10],['A',.10]],scores),
-  'English Program (EP)': weighted([['C',.30],['F',.15],['E',.15],['H',.15],['I',.10],['A',.10],['K',.05]],scores),
-  'โรงเรียนสาธิต': weighted([['D',.25],['I',.20],['E',.15],['F',.15],['A',.10],['H',.10],['K',.05]],scores),
-  'ห้องเรียนปกติ': weighted([['L',.25],['K',.15],['D',.15],['F',.15],['A',.10],['H',.10],['I',.10]],scores)
- };
+      return [
+        d.getFullYear(),
+        String(d.getMonth() + 1).padStart(2, '0'),
+        String(d.getDate()).padStart(2, '0')
+      ].join('-');
+    }
 
- let dorm={label:'พร้อมแบบมีเงื่อนไข',cls:'warn',detail:'อาจอยู่ได้ แต่ควรเตรียมทักษะเฉพาะและทดลองแยกจากบ้านก่อน'};
- if(scores.G>=16&&scores.F>=14&&scores.H>=14&&scores.J>=14&&gsafe>=4) dorm={label:'พร้อมสูง',cls:'ok',detail:'มีพื้นฐานความพร้อมสำหรับชีวิตหอ ควรทดลองค่าย/ค้างคืน 3–7 วันก่อนตัดสินใจจริง'};
- if(scores.G<=11||getRadio('G1')<=2) dorm={label:'ยังไม่แนะนำ',cls:'bad',detail:'ความพร้อมด้านชีวิตหอหรือความต้องการของเด็กยังไม่เพียงพอ ไม่ควรใช้ผลการเรียนสูงมาหักล้างความไม่พร้อมนี้'};
+    function formatMoney(value) {
+      return Number(value || 0).toLocaleString('th-TH', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
 
- const ds=document.getElementById('domainScores');ds.innerHTML='';
- Object.entries(domains).forEach(([k,d])=>{const [lv,cl]=levelRaw(scores[k]);ds.insertAdjacentHTML('beforeend',`<div class="scorebox"><span class="pill">${k}</span><b>${scores[k]}/20</b><div>${d.short}</div><div class="${cl}">${lv}</div><div class="bar"><span style="width:${pct(scores[k])}%"></span></div></div>`)});
- document.getElementById('dormResult').innerHTML=`<div class="alert ${dorm.cls}"><b>${dorm.label}</b><br>${dorm.detail}<br><span class="small">G=${scores.G}/20, F=${scores.F}/20, H=${scores.H}/20, J=${scores.J}/20, G-Safety=${gsafe}/5, G1=${getRadio('G1')}/5</span></div>`;
+    function formatDateTH(dateValue) {
+      if (!dateValue) return '-';
 
- let arr=Object.entries(paths).sort((a,b)=>b[1]-a[1]);
- let table='<table><thead><tr><th>อันดับ</th><th>เส้นทาง</th><th>คะแนน</th><th>แปลผล</th><th>เงื่อนไขสำคัญ</th></tr></thead><tbody>';
- arr.forEach(([name,val],idx)=>{let [lv,cl]=pathLevel(val);let gate='—';if(name.startsWith('จภ.')&&getRadio('G1')<=2){gate='ด้านวิชาการอาจเหมาะ แต่ยังไม่แนะนำโรงเรียนประจำ เพราะเด็กยังไม่อยากอยู่หอ';cl='bad'}if(name.startsWith('English')&&scores.C<12){gate='Functional English ต่ำกว่า 12/20: ยังไม่แนะนำ EP เป็นตัวเลือกแรก';cl='bad'}table+=`<tr><td>${idx+1}</td><td><b>${name}</b></td><td>${fmt(val)}/100</td><td class="${cl}">${lv}</td><td>${gate}</td></tr>`});table+='</tbody></table>';
- document.getElementById('pathResults').innerHTML=table;
+      return new Intl.DateTimeFormat('th-TH', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      }).format(new Date(dateValue + 'T12:00:00'));
+    }
 
- const riskCount=riskYes.filter(Boolean).length;const severe=[1,2,3,6,7].filter(i=>riskYes[i]);
- let riskHtml='';
- if(riskCount===0)riskHtml='<div class="alert ok"><b>ยังไม่พบสัญญาณเตือนจากรายการคัดกรองนี้</b><br>ยังควรสังเกตความเครียดและสุขภาวะจริงต่อเนื่อง</div>';
- else if(severe.length||riskCount>=3)riskHtml=`<div class="alert bad"><b>พบสัญญาณที่ควรให้ความสำคัญ ${riskCount} ข้อ</b><br>ไม่ควรเร่งตัดสินใจจากคะแนนวิชาการเพียงอย่างเดียว ควรพูดคุยกับเด็กเป็นการส่วนตัว และพิจารณาปรึกษาผู้เชี่ยวชาญหากอาการรุนแรงหรือต่อเนื่อง</div>`;
- else riskHtml=`<div class="alert warn"><b>พบสัญญาณที่ควรติดตาม ${riskCount} ข้อ</b><br>ควรพูดคุยถึงสาเหตุและดูว่ากระทบการนอน การกิน การเรียน หรือชีวิตประจำวันหรือไม่</div>`;
- const yesList=riskYes.map((v,i)=>v?`R${i+1}: ${risks[i]}`:null).filter(Boolean);if(yesList.length)riskHtml+=`<ul>${yesList.map(x=>`<li>${x}</li>`).join('')}</ul>`;
- document.getElementById('riskResult').innerHTML=riskHtml;
+    function showToast(message, duration = 3000) {
+      const toast = $('toast');
 
- const top=arr[0], second=arr[1];
- const highDomains=Object.keys(scores).sort((a,b)=>scores[b]-scores[a]).slice(0,3);
- const lowDomains=Object.keys(scores).sort((a,b)=>scores[a]-scores[b]).slice(0,2);
- const topStrengths=highDomains.map(k=>`${domains[k].short} (${scores[k]}/20)`).join(', ');
- const develop=lowDomains.map(k=>`${domains[k].short} (${scores[k]}/20)`).join(', ');
- let epText=scores.C>=17?'มีความพร้อมด้านภาษาอังกฤษเพื่อการใช้งานสูง EP สามารถเป็นตัวเลือกที่น่าพิจารณา':scores.C>=12?'มีพื้นฐานภาษาอังกฤษเพื่อการใช้งานในระดับพิจารณาได้ แต่ควรทดลองเรียนเนื้อหาวิชาการเป็นภาษาอังกฤษก่อน':'Functional English ยังต่ำกว่าเกณฑ์นำทาง 12/20 จึงยังไม่แนะนำ EP เป็นตัวเลือกแรก';
- let giftedText=(scores.B>=17&&scores.E>=13&&scores.I>=13)?'มีองค์ประกอบสนับสนุนการเรียนสายวิชาการเข้มข้นค่อนข้างดี':(scores.B>=17&&(scores.E<13||scores.I<13))?'ความสนใจวิทย์–คณิตสูง แต่ควรระวังความมั่นใจและการรับมือเมื่ออยู่กับเพื่อนเก่งจำนวนมาก':'ควรพิจารณาความสนใจจริงและความทนต่อความยากเพิ่มเติมก่อนเลือกห้องวิทย์–คณิตเข้มข้น';
- let regularText=scores.L>=17?'ความต้องการความสมดุลและพื้นที่ค้นหาตัวเองสูง ห้องปกติที่คุณภาพดีอาจเป็นตัวเลือกเชิงบวก ไม่ใช่ตัวเลือกสำรอง':'ควรเลือกสภาพแวดล้อมที่ความเข้มข้นพอดีกับสุขภาวะและแรงจูงใจของเด็ก';
- const checkedParents=parentItems.map((x,i)=>document.querySelector(`input[name="P${i+1}"]`).checked).filter(Boolean).length;
- const name=document.getElementById('studentName').value.trim()||'นักเรียน';
- const date=document.getElementById('assessmentDate').value||'';
- const summary=`รายงานสรุปผลการประเมินความพร้อมและความเหมาะสมในการเลือกเส้นทาง ม.1\nผู้ประเมิน: ${name}${date?` | วันที่ ${date}`:''}\n\n1) ภาพรวม\nเส้นทางที่ได้คะแนนความเหมาะสมสูงสุดในปัจจุบันคือ ${top[0]} (${fmt(top[1])}/100) รองลงมาคือ ${second[0]} (${fmt(second[1])}/100)\nจุดแข็งเด่น: ${topStrengths}\nด้านที่ควรพัฒนาหรือสำรวจเพิ่ม: ${develop}\n\n2) ความพร้อมอยู่หอ\nผล: ${dorm.label} — ${dorm.detail}\n\n3) ด้านวิชาการและความท้าทาย\n${giftedText}\n\n4) ด้านภาษาอังกฤษ\n${epText}\n\n5) ด้านสังคม อารมณ์ และการปรับตัว\nResilience ${scores.E}/20, Emotion/Help-seeking ${scores.H}/20, Social Adaptation ${scores.I}/20. ควรอ่านสามด้านนี้ร่วมกัน ไม่ใช้คะแนนวิชาการเพียงด้านเดียวตัดสิน\n\n6) สุขภาวะและความสมดุล\nWell-being ${scores.K}/20, Balance & Exploration ${scores.L}/20. ${regularText}\n\n7) ตัวบ่งชี้ความเสี่ยง\nตอบ “ใช่” ${riskCount} จาก 8 ข้อ${riskCount?` ได้แก่ ${yesList.join(' | ')}`:' ไม่พบสัญญาณเตือนจากรายการนี้'}\n\n8) ปัจจัยครอบครัว/เงื่อนไขจริง\nChecklist ผู้ปกครองยืนยันแล้ว ${checkedParents}/10 ข้อ ต้องตรวจเกณฑ์สมัคร เขตพื้นที่ ค่าใช้จ่าย การเดินทาง ระบบหอ และแผนสำรองจากข้อมูลจริงของโรงเรียนอีกครั้ง\n\n9) ข้อสรุปเพื่อการตัดสินใจ\nผลนี้ตอบ 4 เรื่องแยกกัน: Ability (เรียนไหวไหม), Readiness (พร้อมใช้ชีวิตแบบนั้นไหม), Preference (เด็กต้องการจริงไหม), Sustainability (อยู่ได้ดีต่อเนื่อง 3 ปีไหม)\nเด็กอาจสอบได้แต่ยังไม่เหมาะ เด็กอาจเก่งพอแต่ยังไม่พร้อมอยู่หอ และห้องปกติอาจเป็นสภาพแวดล้อมที่เหมาะที่สุดสำหรับเด็กบางคนได้\n\nคำแนะนำ: ใช้ผลนี้เป็นฐานพูดคุยร่วมกันระหว่างเด็ก ผู้ปกครอง และครู/ผู้เชี่ยวชาญด้านแนะแนว ไม่ใช้เป็นคำวินิจฉัยหรือเกณฑ์ตัดสินอนาคตเพียงอย่างเดียว`;
- document.getElementById('professionalSummary').textContent=summary;lastReport=summary;
- document.getElementById('results').style.display='block';document.getElementById('results').scrollIntoView({behavior:'smooth'});
-}
+      toast.textContent = message;
+      toast.classList.remove('hidden');
 
-function downloadReport(){if(!lastReport){alert('กรุณาคำนวณผลก่อนดาวน์โหลด');return}const blob=new Blob([lastReport],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='M1_school_fit_result.txt';a.click();URL.revokeObjectURL(a.href)}
-function resetResults(){document.getElementById('results').style.display='none';lastReport='';const now=new Date(); const localDate=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10); document.getElementById('assessmentDate').value=localDate;window.scrollTo({top:0,behavior:'smooth'})}
-</script>
+      clearTimeout(showToast._timer);
+
+      showToast._timer = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, duration);
+    }
+
+    function showDenied(message) {
+      state.authorized = false;
+
+      $('loadingGate').classList.add('hidden');
+      $('appView').classList.add('hidden');
+
+      $('deniedText').textContent =
+        message || 'กรุณาเปิดฟอร์มจาก LINE Group ที่ได้รับอนุญาต';
+
+      $('deniedGate').classList.remove('hidden');
+    }
+
+    function showApp(user) {
+      $('loadingGate').classList.add('hidden');
+      $('deniedGate').classList.add('hidden');
+      $('appView').classList.remove('hidden');
+
+      $('profileName').textContent = user.displayName || 'LINE User';
+
+      $('profileImage').src =
+        user.pictureUrl ||
+        'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64"%3E%3Crect width="64" height="64" rx="32" fill="%231b3b57"/%3E%3C/svg%3E';
+
+      $('expenseDate').value = todayLocal();
+    }
+
+    /**
+     * เริ่ม LIFF
+     * บังคับ:
+     * - ต้องเปิดใน LINE App
+     * - ต้องเปิดจาก Group Chat
+     * - ต้องมี sendMessages API
+     * - ต้องเป็นสมาชิก LINE_GROUP_ID
+     */
+async function initLiff() {
+  try {
+
+alert('ก่อนเริ่ม LIFF');
+
+await liff.init({
+  liffId: LIFF_ID
+});
+
+alert('LIFF เริ่มสำเร็จ');
+
+const scopes = await liff.permission.getGrantedAll();
+
+alert(
+  'สิทธิ์ที่ LINE อนุญาตให้แอปตอนนี้:\n' +
+  JSON.stringify(scopes) +
+  '\n\nID Token: ' +
+  (liff.getIDToken() ? 'มี' : 'ไม่มี')
+);
+
+        if (!liff.isInClient()) {
+          return showDenied(
+            'คุณไม่มีสิทธิ์ใช้งาน กรุณาเปิดลิงก์นี้ด้วย Browser ภายในแอป LINE'
+          );
+        }
+
+        const context = liff.getContext();
+
+        if (!context || context.type !== 'group') {
+          return showDenied(
+            'คุณไม่มีสิทธิ์ใช้งาน กรุณาเปิดฟอร์มจาก LINE Group'
+          );
+        }
+
+        if (!liff.isApiAvailable('sendMessages')) {
+          return showDenied(
+            'คุณไม่มีสิทธิ์ใช้งาน กรุณาเปิดฟอร์มจากข้อความใน LINE Group'
+          );
+        }
+
+        state.idToken = liff.getIDToken();
+
+        if (!state.idToken) {
+          return showDenied('คุณไม่มีสิทธิ์ใช้งาน');
+        }
+
+        google.script.run
+          .withSuccessHandler(result => {
+            if (!result || !result.authorized) {
+              return showDenied('คุณไม่มีสิทธิ์ใช้งาน');
+            }
+
+            state.authorized = true;
+            state.user = result.user;
+
+            showApp(result.user);
+          })
+          .withFailureHandler(error => {
+            console.error(error);
+            showDenied('คุณไม่มีสิทธิ์ใช้งาน');
+          })
+          .authorizeUser(state.idToken);
+
+      } catch (error) {
+        console.error(error);
+
+        showDenied(
+          'คุณไม่มีสิทธิ์ใช้งาน หรือไม่สามารถเชื่อมต่อ LINE ได้'
+        );
+      }
+    }
+
+    $('openInLineBtn').addEventListener('click', () => {
+      window.location.href = LIFF_URL;
+    });
+
+    /* ============================================
+       IMAGE
+       ============================================ */
+
+    function compressImage(file) {
+      return new Promise((resolve, reject) => {
+
+        const reader = new FileReader();
+
+        reader.onerror = reject;
+
+        reader.onload = () => {
+
+          const image = new Image();
+
+          image.onerror = reject;
+
+          image.onload = () => {
+
+            // ลดขนาดเพื่อให้ Apps Script รับพร้อมกันหลายคนได้ดีขึ้น
+            const MAX_SIDE = 1280;
+            const scale = Math.min(
+              1,
+              MAX_SIDE / Math.max(image.width, image.height)
+            );
+
+            const canvas = document.createElement('canvas');
+
+            canvas.width = Math.round(image.width * scale);
+            canvas.height = Math.round(image.height * scale);
+
+            const ctx = canvas.getContext('2d', {
+              alpha: false
+            });
+
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.drawImage(
+              image,
+              0,
+              0,
+              canvas.width,
+              canvas.height
+            );
+
+            resolve(
+              canvas.toDataURL('image/jpeg', 0.70)
+            );
+          };
+
+          image.src = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+      });
+    }
+
+    $('imageInput').addEventListener('change', async event => {
+
+      const file = event.target.files?.[0];
+
+      if (!file) return;
+
+      try {
+        showToast('กำลังปรับขนาดรูป...');
+
+        state.evidenceDataUrl =
+          await compressImage(file);
+
+        $('imagePreview').src =
+          state.evidenceDataUrl;
+
+        $('uploadEmpty').classList.add('hidden');
+        $('previewWrap').classList.remove('hidden');
+
+        showToast('แนบรูปเรียบร้อย');
+
+      } catch (error) {
+        console.error(error);
+
+        showToast(
+          'ไม่สามารถอ่านรูปได้',
+          4000
+        );
+      }
+    });
+
+    $('removeImageBtn').addEventListener('click', event => {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      state.evidenceDataUrl = '';
+
+      $('imageInput').value = '';
+      $('imagePreview').src = '';
+
+      $('previewWrap').classList.add('hidden');
+      $('uploadEmpty').classList.remove('hidden');
+    });
+
+    /* ============================================
+       GOOGLE APPS SCRIPT CALL WITH RETRY
+       ============================================ */
+
+    function callGas(functionName, payload) {
+      return new Promise((resolve, reject) => {
+
+        google.script.run
+          .withSuccessHandler(resolve)
+          .withFailureHandler(reject)
+          [functionName](payload);
+      });
+    }
+
+    async function callGasWithRetry(
+      functionName,
+      payload,
+      maxAttempts = 4
+    ) {
+      let lastError;
+
+      for (
+        let attempt = 0;
+        attempt < maxAttempts;
+        attempt++
+      ) {
+
+        try {
+          /**
+           * Random jitter:
+           * ถ้าหลายคนกดพร้อมกัน จะกระจาย request ออกจากกัน
+           * ช่วยลด Apps Script concurrent spike
+           */
+          if (attempt === 0) {
+            const jitter =
+              300 + Math.floor(Math.random() * 4700);
+
+            await new Promise(resolve =>
+              setTimeout(resolve, jitter)
+            );
+          }
+
+          return await callGas(
+            functionName,
+            payload
+          );
+
+        } catch (error) {
+
+          lastError = error;
+
+          if (attempt === maxAttempts - 1) {
+            break;
+          }
+
+          const backoff =
+            900 * Math.pow(2, attempt) +
+            Math.floor(Math.random() * 800);
+
+          await new Promise(resolve =>
+            setTimeout(resolve, backoff)
+          );
+        }
+      }
+
+      throw lastError;
+    }
+
+    /* ============================================
+       SUBMIT
+       ============================================ */
+
+    $('expenseForm').addEventListener(
+      'submit',
+      async event => {
+
+        event.preventDefault();
+
+        if (!$('expenseForm').reportValidity()) {
+          return;
+        }
+
+        if (!state.authorized) {
+          return showDenied('คุณไม่มีสิทธิ์ใช้งาน');
+        }
+
+        const amount =
+          Number($('amount').value);
+
+        if (
+          !Number.isFinite(amount) ||
+          amount < 0
+        ) {
+          return showToast(
+            'กรุณาระบุจำนวนเงินให้ถูกต้อง'
+          );
+        }
+
+        const button =
+          $('submitBtn');
+
+        button.disabled = true;
+        $('submitText').textContent =
+          'กำลังบันทึก...';
+
+        const payload = {
+          idToken: state.idToken,
+          expenseDate: $('expenseDate').value,
+          workType: $('workType').value,
+          expenseCategory:
+            $('expenseCategory').value,
+          amount: amount,
+          imageDataUrl:
+            state.evidenceDataUrl
+        };
+
+        try {
+
+          const result =
+            await callGasWithRetry(
+              'saveExpense',
+              payload
+            );
+
+          state.lastSubmission =
+            result.submission;
+
+          showSuccess(
+            result.submission
+          );
+
+        } catch (error) {
+
+          console.error(error);
+
+          const message =
+            error?.message ||
+            String(error || '');
+
+          if (
+            message.includes(
+              'คุณไม่มีสิทธิ์ใช้งาน'
+            )
+          ) {
+            return showDenied(
+              'คุณไม่มีสิทธิ์ใช้งาน'
+            );
+          }
+
+          showToast(
+            'บันทึกไม่สำเร็จ กรุณาลองใหม่',
+            5000
+          );
+
+        } finally {
+
+          button.disabled = false;
+
+          $('submitText').textContent =
+            'บันทึกข้อมูล';
+        }
+      }
+    );
+
+    function showSuccess(data) {
+
+      $('cardAmount').textContent =
+        formatMoney(data.amount);
+
+      $('cardDate').textContent =
+        formatDateTH(data.expenseDate);
+
+      $('cardWorkType').textContent =
+        data.workType;
+
+      $('cardCategory').textContent =
+        data.expenseCategory;
+
+      $('cardUser').textContent =
+        data.submittedBy || '-';
+
+      $('cardReference').textContent =
+        'REF: ' + data.reference;
+
+      $('sendResult').textContent = '';
+
+      $('successModal').classList.remove(
+        'hidden'
+      );
+
+      document.body.style.overflow =
+        'hidden';
+    }
+
+    /* ============================================
+       CARD -> PNG -> USER SENDS TO LINE
+       ============================================ */
+
+    async function createCardImages() {
+
+      const element =
+        $('shareCard');
+
+      const canvas =
+        await html2canvas(
+          element,
+          {
+            scale: Math.min(
+              2.2,
+              window.devicePixelRatio * 1.4
+            ),
+            backgroundColor: null,
+            logging: false,
+            useCORS: true
+          }
+        );
+
+      const original =
+        canvas.toDataURL(
+          'image/png'
+        );
+
+      // LINE Preview <= 1 MB
+      const MAX_PREVIEW_WIDTH = 480;
+
+      const previewScale =
+        Math.min(
+          1,
+          MAX_PREVIEW_WIDTH /
+            canvas.width
+        );
+
+      const previewCanvas =
+        document.createElement(
+          'canvas'
+        );
+
+      previewCanvas.width =
+        Math.round(
+          canvas.width * previewScale
+        );
+
+      previewCanvas.height =
+        Math.round(
+          canvas.height * previewScale
+        );
+
+      const ctx =
+        previewCanvas.getContext(
+          '2d'
+        );
+
+      ctx.drawImage(
+        canvas,
+        0,
+        0,
+        previewCanvas.width,
+        previewCanvas.height
+      );
+
+      const preview =
+        previewCanvas.toDataURL(
+          'image/jpeg',
+          0.72
+        );
+
+      return {
+        original: original,
+        preview: preview
+      };
+    }
+
+    $('shareLineBtn').addEventListener(
+      'click',
+      async () => {
+
+        if (
+          !state.authorized ||
+          !state.lastSubmission
+        ) {
+          return showDenied(
+            'คุณไม่มีสิทธิ์ใช้งาน'
+          );
+        }
+
+        /**
+         * ส่งได้เฉพาะใน LIFF Browser
+         * และเฉพาะห้อง Group ที่เปิด LIFF อยู่
+         */
+        if (
+          !liff.isInClient() ||
+          liff.getContext()?.type !== 'group' ||
+          !liff.isApiAvailable('sendMessages')
+        ) {
+          return showDenied(
+            'คุณไม่มีสิทธิ์ใช้งาน'
+          );
+        }
+
+        const button =
+          $('shareLineBtn');
+
+        button.disabled = true;
+
+        button.textContent =
+          'กำลังสร้าง PNG...';
+
+        $('sendResult').textContent = '';
+
+        try {
+
+          const images =
+            await createCardImages();
+
+          button.textContent =
+            'กำลังตรวจสิทธิ์...';
+
+          /**
+           * Server จะ:
+           * - Verify LINE token
+           * - Verify membership
+           * - Upload PNG
+           * - Return public image URL
+           *
+           * Server ไม่ส่ง LINE Message
+           */
+          const prepared =
+            await callGasWithRetry(
+              'prepareLineCard',
+              {
+                idToken:
+                  state.idToken,
+
+                reference:
+                  state.lastSubmission
+                    .reference,
+
+                cardPngDataUrl:
+                  images.original,
+
+                previewDataUrl:
+                  images.preview
+              },
+              3
+            );
+
+          button.textContent =
+            'กำลังส่งเข้า LINE...';
+
+          /**
+           * จุดสำคัญ:
+           * LINE USER เป็นผู้ส่งเอง
+           * Bot ไม่ได้เป็น sender
+           */
+          await liff.sendMessages([
+            {
+              type: 'image',
+              originalContentUrl:
+                prepared
+                  .originalContentUrl,
+
+              previewImageUrl:
+                prepared
+                  .previewImageUrl
+            }
+          ]);
+
+          $('sendResult').textContent =
+            'ส่ง Card PNG เข้า LINE กลุ่มเรียบร้อย';
+
+          showToast(
+            'ส่งเข้า LINE สำเร็จ'
+          );
+
+          /**
+           * Audit เท่านั้น
+           * ไม่ต้องรอผล
+           */
+          callGas(
+            'markLineSent',
+            {
+              idToken:
+                state.idToken,
+
+              reference:
+                state.lastSubmission
+                  .reference,
+
+              cardUrl:
+                prepared
+                  .originalContentUrl
+            }
+          ).catch(
+            console.warn
+          );
+
+        } catch (error) {
+
+          console.error(error);
+
+          const message =
+            error?.message ||
+            String(error || '');
+
+          if (
+            message.includes(
+              'คุณไม่มีสิทธิ์ใช้งาน'
+            ) ||
+            error?.code === 403
+          ) {
+            return showDenied(
+              'คุณไม่มีสิทธิ์ใช้งาน'
+            );
+          }
+
+          showToast(
+            'ส่ง LINE ไม่สำเร็จ กรุณาลองใหม่',
+            5000
+          );
+
+        } finally {
+
+          button.disabled = false;
+
+          button.textContent =
+            'แชร์ไป LINE กลุ่ม';
+        }
+      }
+    );
+
+    /* ============================================
+       RESET
+       ============================================ */
+
+    $('closeBtn').addEventListener(
+      'click',
+      () => {
+
+        $('successModal').classList.add(
+          'hidden'
+        );
+
+        document.body.style.overflow =
+          '';
+
+        $('expenseForm').reset();
+
+        $('expenseDate').value =
+          todayLocal();
+
+        state.evidenceDataUrl = '';
+        state.lastSubmission = null;
+
+        $('imageInput').value = '';
+        $('imagePreview').src = '';
+
+        $('previewWrap').classList.add(
+          'hidden'
+        );
+
+        $('uploadEmpty').classList.remove(
+          'hidden'
+        );
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    );
+
+    initLiff();
+  </script>
 </body>
 </html>
