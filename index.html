@@ -19,7 +19,7 @@
     .gate{min-height:calc(100dvh - 36px);display:flex;align-items:center;justify-content:center}.gate-card{width:100%;padding:29px 22px;border-radius:24px;text-align:center;border:1px solid var(--line);background:var(--panel);box-shadow:var(--shadow)}.gate-icon{width:66px;height:66px;border-radius:20px;display:grid;place-items:center;margin:0 auto 16px;font-size:28px;color:var(--cyan);background:rgba(43,215,255,.06);border:1px solid rgba(43,215,255,.25)}.gate.denied .gate-icon{color:var(--red);background:rgba(255,104,122,.07);border-color:rgba(255,104,122,.24)}.gate-card h2{margin:0 0 8px;font-size:22px}.gate-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.gate-detail{margin-top:12px!important;padding:10px;border-radius:12px;background:rgba(255,255,255,.035);font-size:10px!important;word-break:break-word}
     .modal{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center}.modal-backdrop{position:absolute;inset:0;background:rgba(1,6,10,.78);backdrop-filter:blur(8px)}.modal-sheet{position:relative;width:min(100%,620px);max-height:95dvh;overflow:auto;padding:18px 15px calc(23px + env(safe-area-inset-bottom));border-radius:27px 27px 0 0;border:1px solid rgba(125,182,219,.22);background:linear-gradient(180deg,#10243a,#07131f);animation:sheetUp .34s cubic-bezier(.2,.8,.2,1)}.success-head{display:flex;align-items:center;gap:11px;margin:2px 3px 14px}.success-check{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:var(--green);background:rgba(53,239,177,.10);border:1px solid rgba(53,239,177,.22);font-size:22px;font-weight:950}.success-head h2{margin:0;font-size:22px}
     .expense-card{width:100%;color:#eff8ff;border-radius:23px;padding:22px;position:relative;overflow:hidden;background:radial-gradient(circle at 92% 10%,rgba(43,215,255,.26),transparent 30%),linear-gradient(145deg,#0c263d,#081522 62%,#0c2031);border:1px solid rgba(112,197,239,.31);box-shadow:0 24px 55px rgba(0,0,0,.35)}.expense-card:after{content:"";position:absolute;width:185px;height:185px;right:-92px;bottom:-92px;border:1px solid rgba(43,215,255,.12);border-radius:44px;transform:rotate(25deg)}.card-success{position:relative;z-index:1;display:flex;align-items:center;gap:11px;margin:0 0 20px;padding:0 0 16px;border-bottom:1px solid rgba(255,255,255,.10)}.card-success h2{margin:0;font-size:22px}.card-success .eyebrow{margin-bottom:4px}.card-top,.card-amount,.card-grid,.card-foot{position:relative;z-index:1}.card-top{display:flex;justify-content:space-between;gap:12px}.card-top p{margin:0 0 4px;color:#81d4ee;font-size:8px;font-weight:950;letter-spacing:.16em}.card-top h3{margin:0;font-size:20px}.card-badge{align-self:flex-start;color:#61f4bf;font-size:7px;font-weight:950;letter-spacing:.12em;border:1px solid rgba(97,244,191,.30);padding:6px 8px;border-radius:999px}.card-amount{display:flex;align-items:flex-start;gap:7px;margin:29px 0 24px}.card-amount span{margin-top:7px;color:var(--green);font-size:18px;font-weight:950}.card-amount strong{font-size:44px;line-height:1;letter-spacing:-.055em}.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card-grid>div{min-width:0;padding:11px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.06)}.card-grid span{display:block;color:#7e99ad;font-size:7px;font-weight:950;letter-spacing:.10em;margin-bottom:5px}.card-grid strong{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card-grid .card-machine{grid-column:1/-1}.card-grid .card-machine strong{white-space:normal;overflow:visible;text-overflow:clip;word-break:break-word}.card-foot{display:flex;justify-content:space-between;gap:8px;margin-top:17px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);color:#6c879a;font-size:6px;font-weight:950;letter-spacing:.11em}
-    .modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}.action-btn{height:53px;border-radius:14px;border:0;font-weight:950}.close-btn{color:#e2eff8;background:#132b42;border:1px solid rgba(142,190,225,.16)}.share-btn{color:#fff;background:#06c755}.share-btn:disabled{opacity:.58;cursor:wait}.send-result{min-height:15px;margin:10px 4px 0;text-align:center;color:#8fe4bf;font-size:10px;line-height:1.5}.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:100;width:min(calc(100% - 30px),540px);padding:12px 14px;border-radius:13px;text-align:center;color:#fff;background:#122a40;border:1px solid var(--line);box-shadow:var(--shadow);font-size:11px}
+    .modal-actions{display:grid;grid-template-columns:1fr;gap:9px;margin-top:14px}.action-btn{height:53px;border-radius:14px;border:0;font-weight:950}.close-btn{color:#e2eff8;background:#132b42;border:1px solid rgba(142,190,225,.16)}.share-btn{color:#fff;background:#06c755}.share-btn:disabled{opacity:.58;cursor:wait}.send-result{display:none}.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));bottom:auto;transform:translateX(-50%);z-index:100;width:min(calc(100% - 30px),540px);padding:12px 14px;border-radius:13px;text-align:center;color:#fff;background:#122a40;border:1px solid var(--line);box-shadow:var(--shadow);font-size:11px}
     @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(53,239,177,0)}100%{box-shadow:none}}@keyframes shine{0%,48%{left:-35%}75%,100%{left:130%}}@keyframes float{from{transform:translateY(-12px)}to{transform:translateY(20px)}}@keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}@media(min-width:700px){.shell{padding-top:32px}.modal{align-items:center}.modal-sheet{border-radius:27px;max-height:92dvh}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
   </style>
 </head>
@@ -30,7 +30,7 @@
   <script>
     const CONFIG = {
       LIFF_ID: '2011225431-6sczfLdn',
-      GAS_WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbxsnnS8Yqt07N-_JCuBbmb_9hBkccuaWOKxzFwR7_YKEhtU4kgTyX__wqTKvrDFN5T12A/exec'
+      GAS_WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbwsE3rp6yHpqC3f2suCYYgB6xFBPhuRkiQm5M4zEuiCDwOVWpRIqfwu9peY7VUA7DZuJg/exec'
     };
   </script>
 
@@ -55,7 +55,7 @@
     </section>
   </main>
 
-  <section id="successModal" class="modal hidden"><div class="modal-backdrop"></div><div class="modal-sheet"><div id="shareCard" class="expense-card"><div class="card-success"><span class="success-check">✓</span><div><p class="eyebrow">SUBMISSION COMPLETE</p><h2>บันทึกสำเร็จ</h2></div></div><div class="card-top"><div><p>ENGINEERING EXPENSE</p><h3>Monthly Expenses</h3></div><span class="card-badge">RECORDED</span></div><div class="card-amount"><span>฿</span><strong id="cardAmount">0.00</strong></div><div class="card-grid"><div><span>DATE</span><strong id="cardDate">-</strong></div><div><span>WORK TYPE</span><strong id="cardWorkType">-</strong></div><div><span>CATEGORY</span><strong id="cardCategory">-</strong></div><div><span>BY</span><strong id="cardUser">-</strong></div><div class="card-machine"><span>MACHINE</span><strong id="cardMachine">-</strong></div></div><div class="card-foot"><span id="cardReference">REF: -</span><span>MONTHLY EXPENSES</span></div></div><div class="modal-actions"><button id="closeBtn" class="action-btn close-btn" type="button">ปิด</button><button id="shareLineBtn" class="action-btn share-btn" type="button">แชร์ไป LINE กลุ่ม</button></div><p id="sendResult" class="send-result"></p></div></section>
+  <section id="successModal" class="modal hidden"><div class="modal-backdrop"></div><div class="modal-sheet"><div id="shareCard" class="expense-card"><div class="card-success"><span class="success-check">✓</span><div><p class="eyebrow">SUBMISSION COMPLETE</p><h2>บันทึกสำเร็จ</h2></div></div><div class="card-top"><div><p>ENGINEERING EXPENSE</p><h3>Monthly Expenses</h3></div><span class="card-badge">RECORDED</span></div><div class="card-amount"><span>฿</span><strong id="cardAmount">0.00</strong></div><div class="card-grid"><div><span>DATE</span><strong id="cardDate">-</strong></div><div><span>WORK TYPE</span><strong id="cardWorkType">-</strong></div><div><span>CATEGORY</span><strong id="cardCategory">-</strong></div><div><span>BY</span><strong id="cardUser">-</strong></div><div class="card-machine"><span>MACHINE</span><strong id="cardMachine">-</strong></div></div><div class="card-foot"><span id="cardReference">REF: -</span><span>MONTHLY EXPENSES</span></div></div><div class="modal-actions"><button id="shareLineBtn" class="action-btn share-btn" type="button">ส่ง LINE</button></div><p id="sendResult" class="send-result"></p></div></section>
   <div id="toast" class="toast hidden"></div>
 
   <script>
@@ -139,7 +139,8 @@
         $('submitText').textContent='บันทึกข้อมูล';
       }
     });
-    function showSuccess(data){$('cardAmount').textContent=formatMoney(data.amount);$('cardDate').textContent=formatDateTH(data.expenseDate);$('cardWorkType').textContent=data.workType;$('cardCategory').textContent=data.expenseCategory;$('cardUser').textContent=data.submittedBy||'-';$('cardMachine').textContent=data.machine||'ไม่ระบุเครื่อง';$('cardReference').textContent='REF: '+data.reference;$('sendResult').textContent='';$('successModal').classList.remove('hidden');document.body.style.overflow='hidden'}
+    function resetFormToStart(){$('successModal').classList.add('hidden');document.body.style.overflow='';$('expenseForm').reset();$('expenseDate').value=todayLocal();state.evidenceDataUrl='';state.lastSubmission=null;$('machineNameField').classList.add('hidden');$('machineName').required=false;$('imageInput').value='';$('imagePreview').src='';$('previewWrap').classList.add('hidden');$('uploadEmpty').classList.remove('hidden');const btn=$('shareLineBtn');btn.dataset.mode='';btn.textContent='ส่ง LINE';btn.disabled=false;btn.classList.remove('close-btn');btn.classList.add('share-btn');window.scrollTo({top:0,behavior:'smooth'})}
+    function showSuccess(data){$('cardAmount').textContent=formatMoney(data.amount);$('cardDate').textContent=formatDateTH(data.expenseDate);$('cardWorkType').textContent=data.workType;$('cardCategory').textContent=data.expenseCategory;$('cardUser').textContent=data.submittedBy||'-';$('cardMachine').textContent=data.machine||'ไม่ระบุเครื่อง';$('cardReference').textContent='REF: '+data.reference;$('sendResult').textContent='';const btn=$('shareLineBtn');btn.dataset.mode='';btn.textContent='ส่ง LINE';btn.disabled=false;btn.classList.remove('close-btn');btn.classList.add('share-btn');$('successModal').classList.remove('hidden');document.body.style.overflow='hidden'}
 
     function flexRow_(label,value){
       return{
@@ -230,69 +231,61 @@
     }
 
     $('shareLineBtn').addEventListener('click',async()=>{
-      if(!state.authorized||!state.lastSubmission){
-        return showDenied('คุณไม่มีสิทธิ์ใช้งาน');
-      }
-
-      if(!liff.isInClient()||liff.getContext()?.type!=='group'){
-        return showDenied(
-          'คุณไม่มีสิทธิ์ใช้งาน',
-          'กรุณาเปิดฟอร์มใหม่จากข้อความใน LINE Group'
-        );
-      }
-
       const btn=$('shareLineBtn');
+
+      if(btn.dataset.mode==='close'){
+        resetFormToStart();
+        return;
+      }
+
+      if(!state.lastSubmission)return;
+      if(!state.liffReady)return showToast('LIFF ยังไม่พร้อมใช้งาน',4500);
+      if(!state.inClient)return showToast('กรุณาเปิดฟอร์มจากในแอป LINE',4500);
+      if((liff.getContext()?.type||'')!=='group')return showToast('กรุณาเปิดฟอร์มจาก LINE Group เท่านั้น',4500);
+
       btn.disabled=true;
+      btn.textContent='กำลังส่ง...';
       $('sendResult').textContent='';
 
       try{
-        btn.textContent='กำลังส่งเข้า LINE...';
+        const flexMessage=createShareFlexMessage(state.lastSubmission);
+        await liff.sendMessages([flexMessage]);
 
-        await liff.sendMessages([
-          buildLineFlexCard(state.lastSubmission)
-        ]);
-
-        $('sendResult').textContent='ส่ง Card เข้า LINE กลุ่มด้วยบัญชีของคุณเรียบร้อย';
-        showToast('ส่งเข้า LINE สำเร็จ');
-
-        gasCall(
-          'markSent',
-          {
+        await gasCall('markSent',{
             idToken:state.idToken,
             reference:state.lastSubmission.reference
-          },
-          {
+          },{
             requestId:'sent-'+state.lastSubmission.reference,
-            attempts:3,
+            attempts:4,
             waitMs:15000,
-            jitterMax:0
+            jitterMax:2500
           }
-        ).catch(console.warn);
+        );
+
+        showToast('ส่งเข้า LINE สำเร็จ');
+        btn.dataset.mode='close';
+        btn.textContent='ปิด';
+        btn.classList.remove('share-btn');
+        btn.classList.add('close-btn');
+        btn.disabled=false;
 
       }catch(err){
         console.error(err);
-
-        if(err.serverCode==='UNAUTHORIZED'){
-          return showDenied('คุณไม่มีสิทธิ์ใช้งาน');
+        if(err.message&&err.message.includes('user doesn't grant required permissions')){
+          showToast('กรุณาเปิดสิทธิ์ chat_message.write ให้ LIFF',5500);
+        }else if(err.code===403){
+          showToast('สิทธิ์การส่งข้อความไม่เพียงพอ หรือไม่ได้เปิดจากกลุ่มนี้',5500);
+        }else if(err.code===400){
+          showToast('ไม่สามารถส่งเข้า LINE ได้ในบริบทนี้',5500);
+        }else{
+          showToast(err.message||'ส่ง LINE ไม่สำเร็จ กรุณาลองใหม่',5500);
         }
-
-        if(String(err?.code)==='403'){
-          showToast(
-            'LINE ไม่อนุญาตให้ส่งข้อความ กรุณาเปิด LIFF URL ใหม่จากข้อความในกลุ่ม',
-            6500
-          );
-          return;
-        }
-
-        showToast(err.message||'ส่ง LINE ไม่สำเร็จ กรุณาลองใหม่',5500);
-
-      }finally{
         btn.disabled=false;
-        btn.textContent='แชร์ไป LINE กลุ่ม';
+        btn.textContent='ส่ง LINE';
       }
-    });
+    })
 
-    $('closeBtn').addEventListener('click',()=>{$('successModal').classList.add('hidden');document.body.style.overflow='';$('expenseForm').reset();$('expenseDate').value=todayLocal();state.evidenceDataUrl='';state.lastSubmission=null;$('machineNameField').classList.add('hidden');$('machineName').required=false;$('imageInput').value='';$('imagePreview').src='';$('previewWrap').classList.add('hidden');$('uploadEmpty').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})})
+    $('successModal').addEventListener('click',e=>{if(e.target.classList.contains('modal-backdrop'))resetFormToStart()})
     initLiff();
   </script>
 
@@ -300,7 +293,7 @@
     position:fixed;right:8px;bottom:7px;z-index:9999;
     font:700 8px/1.2 Arial,sans-serif;letter-spacing:.05em;
     color:rgba(255,255,255,.34);pointer-events:none">
-    BUILD V5 • MACHINE • FLEX CARD • 2026-08-24
+    BUILD V5.1 • TOP TOAST • SEND/CLOSE • 2026-08-24
   </div>
 
 </body>
