@@ -19,10 +19,10 @@
     .gate{min-height:calc(100dvh - 36px);display:flex;align-items:center;justify-content:center}.gate-card{width:100%;padding:29px 22px;border-radius:24px;text-align:center;border:1px solid var(--line);background:var(--panel);box-shadow:var(--shadow)}.gate-icon{width:66px;height:66px;border-radius:20px;display:grid;place-items:center;margin:0 auto 16px;font-size:28px;color:var(--cyan);background:rgba(43,215,255,.06);border:1px solid rgba(43,215,255,.25)}.gate.denied .gate-icon{color:var(--red);background:rgba(255,104,122,.07);border-color:rgba(255,104,122,.24)}.gate-card h2{margin:0 0 8px;font-size:22px}.gate-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.gate-detail{margin-top:12px!important;padding:10px;border-radius:12px;background:rgba(255,255,255,.035);font-size:10px!important;word-break:break-word}
     .modal{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center}.modal-backdrop{position:absolute;inset:0;background:rgba(1,6,10,.78);backdrop-filter:blur(8px)}.modal-sheet{position:relative;width:min(100%,620px);max-height:95dvh;overflow:auto;padding:18px 15px calc(23px + env(safe-area-inset-bottom));border-radius:27px 27px 0 0;border:1px solid rgba(125,182,219,.22);background:linear-gradient(180deg,#10243a,#07131f);animation:sheetUp .34s cubic-bezier(.2,.8,.2,1)}.success-head{display:flex;align-items:center;gap:11px;margin:2px 3px 14px}.success-check{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:var(--green);background:rgba(53,239,177,.10);border:1px solid rgba(53,239,177,.22);font-size:22px;font-weight:950}.success-head h2{margin:0;font-size:22px}
     .expense-card{width:100%;color:#eff8ff;border-radius:23px;padding:22px;position:relative;overflow:hidden;background:radial-gradient(circle at 92% 10%,rgba(43,215,255,.26),transparent 30%),linear-gradient(145deg,#0c263d,#081522 62%,#0c2031);border:1px solid rgba(112,197,239,.31);box-shadow:0 24px 55px rgba(0,0,0,.35)}.expense-card:after{content:"";position:absolute;width:185px;height:185px;right:-92px;bottom:-92px;border:1px solid rgba(43,215,255,.12);border-radius:44px;transform:rotate(25deg)}.card-success{position:relative;z-index:1;display:flex;align-items:center;gap:11px;margin:0 0 20px;padding:0 0 16px;border-bottom:1px solid rgba(255,255,255,.10)}.card-success h2{margin:0;font-size:22px}.card-success .eyebrow{margin-bottom:4px}.card-top,.card-amount,.card-grid,.card-foot{position:relative;z-index:1}.card-top{display:flex;justify-content:space-between;gap:12px}.card-top p{margin:0 0 4px;color:#81d4ee;font-size:8px;font-weight:950;letter-spacing:.16em}.card-top h3{margin:0;font-size:20px}.card-badge{align-self:flex-start;color:#61f4bf;font-size:7px;font-weight:950;letter-spacing:.12em;border:1px solid rgba(97,244,191,.30);padding:6px 8px;border-radius:999px}.card-amount{display:flex;align-items:flex-start;gap:7px;margin:29px 0 24px}.card-amount span{margin-top:7px;color:var(--green);font-size:18px;font-weight:950}.card-amount strong{font-size:44px;line-height:1;letter-spacing:-.055em}.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card-grid>div{min-width:0;padding:11px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.06)}.card-grid span{display:block;color:#7e99ad;font-size:7px;font-weight:950;letter-spacing:.10em;margin-bottom:5px}.card-grid strong{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card-grid .card-machine{grid-column:1/-1}.card-grid .card-machine strong{white-space:normal;overflow:visible;text-overflow:clip;word-break:break-word}.card-foot{display:flex;justify-content:space-between;gap:8px;margin-top:17px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);color:#6c879a;font-size:6px;font-weight:950;letter-spacing:.11em}
-    .modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}.action-btn{height:53px;border-radius:14px;border:0;font-weight:950}.close-btn{color:#e2eff8;background:#132b42;border:1px solid rgba(142,190,225,.16)}.share-btn{color:#fff;background:#06c755}.share-btn:disabled{opacity:.58;cursor:wait}.send-result{min-height:15px;margin:10px 4px 0;text-align:center;color:#8fe4bf;font-size:10px;line-height:1.5}.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:100;width:min(calc(100% - 30px),540px);padding:12px 14px;border-radius:13px;text-align:center;color:#fff;background:#122a40;border:1px solid var(--line);box-shadow:var(--shadow);font-size:11px}
+    .modal-actions{display:grid;grid-template-columns:1fr;gap:9px;margin-top:14px}.action-btn{height:53px;border-radius:14px;border:0;font-weight:950}.close-btn{color:#e2eff8;background:#132b42;border:1px solid rgba(142,190,225,.16)}.share-btn{color:#fff;background:#06c755}.share-btn:disabled{opacity:.58;cursor:wait}.send-result{min-height:0;margin:0;text-align:center;color:#8fe4bf;font-size:10px;line-height:1.5}.toast{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top));bottom:auto;transform:translateX(-50%);z-index:99999;width:min(calc(100% - 30px),540px);padding:13px 15px;border-radius:13px;text-align:center;color:#fff;background:#122a40;border:1px solid rgba(118,180,220,.28);box-shadow:0 16px 42px rgba(0,0,0,.42);font-size:11px}
     .summary-shell{width:min(100%,620px);margin:0 auto;padding:18px 15px calc(34px + env(safe-area-inset-bottom))}
     .summary-card{position:relative;overflow:hidden;padding:22px;border-radius:24px;color:#f8f5ff;background:radial-gradient(circle at 92% 8%,rgba(192,132,252,.28),transparent 31%),radial-gradient(circle at 0 100%,rgba(99,102,241,.20),transparent 35%),linear-gradient(150deg,#251947,#17132f 58%,#11152b);border:1px solid rgba(196,181,253,.32);box-shadow:0 28px 70px rgba(8,5,24,.48)}
-    .summary-card:after{content:"";position:absolute;width:220px;height:220px;right:-120px;bottom:-130px;border:1px solid rgba(196,181,253,.12);border-radius:50%;pointer-events:none}.summary-kicker{position:relative;z-index:1;color:#c4b5fd;font-size:9px;font-weight:950;letter-spacing:.16em;margin:0 0 7px}.summary-title{position:relative;z-index:1;margin:0;color:#fff;font-size:22px;line-height:1.25}.summary-total-label{position:relative;z-index:1;margin:26px 0 5px;color:#a7a0c4;font-size:10px;font-weight:900}.summary-total{position:relative;z-index:1;margin:0;font-size:36px;font-weight:950;letter-spacing:-.04em;color:#fff}.summary-total span{font-size:14px;color:#d8b4fe;margin-left:5px}.summary-count{position:relative;z-index:1;margin:8px 0 21px;color:#cbd5e1;font-size:12px}.summary-section{position:relative;z-index:1;margin-top:17px;padding-top:15px;border-top:1px solid rgba(255,255,255,.10)}.summary-section h3{margin:0 0 10px;color:#e9d5ff;font-size:12px;letter-spacing:.04em}.summary-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:6px 0;font-size:11px}.summary-row span:first-child{color:#bec6d8;min-width:0;word-break:break-word}.summary-row strong{color:#fff;white-space:nowrap}.summary-rank{display:inline-grid;place-items:center;width:19px;height:19px;margin-right:7px;border-radius:6px;background:rgba(167,139,250,.14);color:#c4b5fd;font-size:9px;font-weight:950}.summary-foot{position:relative;z-index:1;display:flex;justify-content:space-between;gap:10px;margin-top:18px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);color:#746f91;font-size:7px;font-weight:900;letter-spacing:.08em}.summary-actions{margin-top:13px}.summary-share-btn{width:100%;height:55px;border:0;border-radius:15px;background:linear-gradient(90deg,#7c3aed,#8b5cf6,#6366f1);color:#fff;font-weight:950;box-shadow:0 14px 36px rgba(124,58,237,.26)}.summary-share-btn:disabled{opacity:.58}.summary-loading{padding:36px 20px;text-align:center;color:#a7a0c4}.summary-empty{padding:12px;border-radius:12px;background:rgba(255,255,255,.04);color:#a7a0c4;font-size:11px;text-align:center}
+    .summary-card:after{content:"";position:absolute;width:220px;height:220px;right:-120px;bottom:-130px;border:1px solid rgba(196,181,253,.12);border-radius:50%;pointer-events:none}.summary-kicker{position:relative;z-index:1;color:#c4b5fd;font-size:9px;font-weight:950;letter-spacing:.16em;margin:0 0 7px}.summary-title{position:relative;z-index:1;margin:0;color:#fff;font-size:22px;line-height:1.25}.summary-total-label{position:relative;z-index:1;margin:26px 0 5px;color:#a7a0c4;font-size:10px;font-weight:900}.summary-total{position:relative;z-index:1;margin:0;font-size:36px;font-weight:950;letter-spacing:-.04em;color:#fff}.summary-total span{font-size:14px;color:#d8b4fe;margin-left:5px}.summary-count{position:relative;z-index:1;margin:8px 0 21px;color:#cbd5e1;font-size:12px}.summary-section{position:relative;z-index:1;margin-top:17px;padding-top:15px;border-top:1px solid rgba(255,255,255,.10)}.summary-section h3{margin:0 0 10px;color:#e9d5ff;font-size:12px;letter-spacing:.04em}.summary-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:6px 0;font-size:11px}.summary-row span:first-child{color:#bec6d8;min-width:0;word-break:break-word}.summary-row strong{color:#fff;white-space:nowrap}.summary-rank{display:inline-grid;place-items:center;width:19px;height:19px;margin-right:7px;border-radius:6px;background:rgba(167,139,250,.14);color:#c4b5fd;font-size:9px;font-weight:950}.summary-foot{position:relative;z-index:1;display:flex;justify-content:space-between;gap:10px;margin-top:18px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);color:#746f91;font-size:7px;font-weight:900;letter-spacing:.08em}.summary-actions{margin-top:13px}.summary-share-btn{width:100%;height:55px;border:0;border-radius:15px;background:linear-gradient(90deg,#7c3aed,#8b5cf6,#6366f1);color:#fff;font-weight:950;box-shadow:0 14px 36px rgba(124,58,237,.26)}.summary-share-btn:disabled{opacity:.58}.summary-loading{padding:36px 20px;text-align:center;color:#a7a0c4}.summary-empty{padding:12px;border-radius:12px;background:rgba(255,255,255,.04);color:#a7a0c4;font-size:11px;text-align:center}.summary-picker{padding:22px;border-radius:23px;background:linear-gradient(155deg,rgba(45,32,83,.96),rgba(20,19,48,.96));border:1px solid rgba(196,181,253,.28);box-shadow:0 28px 70px rgba(8,5,24,.38)}.summary-picker h2{margin:0;color:#fff;font-size:20px}.summary-picker p{margin:7px 0 20px;color:#aaa4c0;font-size:11px;line-height:1.6}.summary-picker-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}.summary-picker .field{margin:0}.summary-picker .field>label{color:#d9d2f2}.summary-picker .input-wrap select{border-color:rgba(196,181,253,.25);background:rgba(9,8,26,.62)}.summary-picker .input-wrap:has(select):after{color:#c4b5fd}.summary-picker-note{margin:13px 2px 0!important;padding:11px 12px;border-radius:12px;background:rgba(124,58,237,.09);border:1px solid rgba(167,139,250,.15);color:#bcb4da!important;font-size:10px!important}.summary-send-btn{width:100%;height:56px;border:0;border-radius:15px;background:linear-gradient(90deg,#7c3aed,#8b5cf6,#6366f1);color:#fff;font-weight:950;box-shadow:0 14px 36px rgba(124,58,237,.26)}.summary-send-btn:disabled{opacity:.58}
     @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(53,239,177,0)}100%{box-shadow:none}}@keyframes shine{0%,48%{left:-35%}75%,100%{left:130%}}@keyframes float{from{transform:translateY(-12px)}to{transform:translateY(20px)}}@keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}@media(min-width:700px){.shell{padding-top:32px}.modal{align-items:center}.modal-sheet{border-radius:27px;max-height:92dvh}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
   </style>
 </head>
@@ -33,7 +33,7 @@
   <script>
     const CONFIG = {
       LIFF_ID: '2011225431-6sczfLdn',
-      GAS_WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbzjGAKu7AnNVwBXp-iVXZwC1gyJBeYgtb3rV5fJO98D7Fa1-Ko_Yc0BeYCqlSSFuvKfPA/exec'
+      GAS_WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbyQtGKA704Jj7SVDWznAhCYhEpJy1mWWqg9Wku8l7nKPryQ6SKksEsi7ahIO-H0cJFaxw/exec'
     };
   </script>
 
@@ -63,46 +63,33 @@
         <div class="profile"><img id="summaryProfileImage" alt=""><span id="summaryProfileName">LINE User</span></div>
       </header>
 
-      <div id="summaryLoading" class="summary-loading panel">กำลังสรุปข้อมูล...</div>
+      <div class="summary-picker">
+        <p class="summary-kicker">SELECT REPORT PERIOD</p>
+        <h2>เลือกเดือนและปีที่ต้องการสรุป</h2>
+        <p>ระบบจะสรุปยอดรวม จำนวนรายการ ประเภทงาน หมวดค่าใช้จ่าย และ Machine Top 5 แล้วส่ง Flex Card เข้ากลุ่มด้วยบัญชี LINE ของคุณ</p>
 
-      <div id="summaryContent" class="hidden">
-        <div class="summary-card">
-          <p class="summary-kicker">MONTHLY EXPENSE SUMMARY</p>
-          <h2 id="summaryTitle" class="summary-title">📊 ค่าใช้จ่ายเดือน -</h2>
-          <p class="summary-total-label">ยอดรวมประจำเดือน</p>
-          <p class="summary-total"><span style="font-size:22px;margin:0 7px 0 0">฿</span><strong id="summaryTotal">0.00</strong><span>บาท</span></p>
-          <p id="summaryCount" class="summary-count">มีจำนวน: 0 รายการ</p>
-
-          <div class="summary-section">
-            <h3>ประเภทงาน</h3>
-            <div id="summaryWorkTypes"></div>
+        <div class="summary-picker-grid">
+          <div class="field">
+            <label for="summaryMonth">เดือน</label>
+            <div class="input-wrap"><select id="summaryMonth"></select></div>
           </div>
-
-          <div class="summary-section">
-            <h3>หมวดค่าใช้จ่าย</h3>
-            <div id="summaryCategories"></div>
+          <div class="field">
+            <label for="summaryYear">ปี</label>
+            <div class="input-wrap"><select id="summaryYear"></select></div>
           </div>
-
-          <div class="summary-section">
-            <h3>Machine Top 5</h3>
-            <div id="summaryMachines"></div>
-          </div>
-
-          <div class="summary-foot"><span id="summaryGenerated">UPDATED: -</span><span>MONTHLY ANALYTICS</span></div>
         </div>
 
-        <div class="summary-actions">
-          <button id="shareSummaryBtn" class="summary-share-btn" type="button">แชร์สรุปไป LINE กลุ่ม</button>
-        </div>
+        <button id="runSummaryBtn" class="summary-send-btn" type="button">สรุป</button>
+        <p class="summary-picker-note">เมื่อกด “สรุป” Flex Card จะถูกส่งเข้ากลุ่มนี้ในนามบัญชี LINE ของผู้กด ไม่ใช่ Bot</p>
       </div>
     </section>
   </main>
 
-  <section id="successModal" class="modal hidden"><div class="modal-backdrop"></div><div class="modal-sheet"><div id="shareCard" class="expense-card"><div class="card-success"><span class="success-check">✓</span><div><p class="eyebrow">SUBMISSION COMPLETE</p><h2>บันทึกสำเร็จ</h2></div></div><div class="card-top"><div><p>ENGINEERING EXPENSE</p><h3>Monthly Expenses</h3></div><span class="card-badge">RECORDED</span></div><div class="card-amount"><span>฿</span><strong id="cardAmount">0.00</strong></div><div class="card-grid"><div><span>DATE</span><strong id="cardDate">-</strong></div><div><span>WORK TYPE</span><strong id="cardWorkType">-</strong></div><div><span>CATEGORY</span><strong id="cardCategory">-</strong></div><div><span>BY</span><strong id="cardUser">-</strong></div><div class="card-machine"><span>MACHINE</span><strong id="cardMachine">-</strong></div></div><div class="card-foot"><span id="cardReference">REF: -</span><span>MONTHLY EXPENSES</span></div></div><div class="modal-actions"><button id="closeBtn" class="action-btn close-btn" type="button">ปิด</button><button id="shareLineBtn" class="action-btn share-btn" type="button">แชร์ไป LINE กลุ่ม</button></div><p id="sendResult" class="send-result"></p></div></section>
+  <section id="successModal" class="modal hidden"><div class="modal-backdrop"></div><div class="modal-sheet"><div id="shareCard" class="expense-card"><div class="card-success"><span class="success-check">✓</span><div><p class="eyebrow">SUBMISSION COMPLETE</p><h2>บันทึกสำเร็จ</h2></div></div><div class="card-top"><div><p>ENGINEERING EXPENSE</p><h3>Monthly Expenses</h3></div><span class="card-badge">RECORDED</span></div><div class="card-amount"><span>฿</span><strong id="cardAmount">0.00</strong></div><div class="card-grid"><div><span>DATE</span><strong id="cardDate">-</strong></div><div><span>WORK TYPE</span><strong id="cardWorkType">-</strong></div><div><span>CATEGORY</span><strong id="cardCategory">-</strong></div><div><span>BY</span><strong id="cardUser">-</strong></div><div class="card-machine"><span>MACHINE</span><strong id="cardMachine">-</strong></div></div><div class="card-foot"><span id="cardReference">REF: -</span><span>MONTHLY EXPENSES</span></div></div><div class="modal-actions"><button id="closeBtn" class="action-btn close-btn" type="button">ปิด</button></div><p id="sendResult" class="send-result"></p></div></section>
   <div id="toast" class="toast hidden"></div>
 
   <script>
-    const state={idToken:'',user:null,authorized:false,evidenceDataUrl:'',lastSubmission:null,summaryData:null,summaryMode:false};
+    const state={idToken:'',user:null,authorized:false,evidenceDataUrl:'',lastSubmission:null,summaryData:null,summaryMode:false,autoSendStatus:''};
     const $=id=>document.getElementById(id);
     const sleep=ms=>new Promise(r=>setTimeout(r,ms));
     function uuid(){if(window.crypto&&typeof crypto.randomUUID==='function')return crypto.randomUUID();return'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0,v=c==='x'?r:(r&3|8);return v.toString(16)})}
@@ -188,6 +175,7 @@
       btn.disabled=true;
       $('submitText').textContent='กำลังบันทึก...';
       const reference=referenceNow();
+      let savedSubmission=null;
 
       try{
         const result=await gasCall('saveExpense',{
@@ -206,12 +194,51 @@
           waitMs:35000,
           jitterMax:7000
         });
-        state.lastSubmission=result.submission;
-        showSuccess(result.submission);
+
+        savedSubmission=result.submission;
+        state.lastSubmission=savedSubmission;
+        state.autoSendStatus='sending';
+
+        $('submitText').textContent='กำลังจัดทำสรุป...';
+        const summary=await fetchSummary_(yearMonthFromDate_(savedSubmission.expenseDate));
+
+        $('submitText').textContent='กำลังส่งเข้า LINE...';
+
+        // User sends BOTH Flex cards: expense first, monthly summary second.
+        await liff.sendMessages([
+          buildLineFlexCard(savedSubmission),
+          buildSummaryFlexCard(summary)
+        ]);
+
+        state.autoSendStatus='sent';
+
+        gasCall(
+          'markSent',
+          {idToken:state.idToken,reference:savedSubmission.reference},
+          {requestId:'sent-'+savedSubmission.reference,attempts:3,waitMs:15000,jitterMax:0}
+        ).catch(console.warn);
+
+        showSuccess(savedSubmission);
+        showToast('บันทึกและส่งข้อมูล + สรุปเข้า LINE สำเร็จ',5000);
+
       }catch(err){
         console.error(err);
-        if(err.serverCode==='UNAUTHORIZED')return showDenied('คุณไม่มีสิทธิ์ใช้งาน');
-        showToast(err.message==='REQUEST_NOT_FINISHED'?'ระบบมีผู้ใช้งานพร้อมกันจำนวนมาก กรุณากดบันทึกอีกครั้ง':(err.message||'บันทึกไม่สำเร็จ กรุณาลองใหม่'),5500);
+
+        if(savedSubmission){
+          // The row is already saved. Do not create another row.
+          state.lastSubmission=savedSubmission;
+          state.autoSendStatus='send_failed';
+          showSuccess(savedSubmission);
+
+          if(String(err?.code)==='403'){
+            showToast('บันทึกสำเร็จ แต่ LINE ไม่อนุญาตให้ส่งข้อความ กรุณาเปิด LIFF จากกลุ่มนี้ใหม่',6500);
+          }else{
+            showToast('บันทึกสำเร็จ แต่ส่ง LINE ไม่สำเร็จ: '+(err.message||'กรุณาลองใหม่'),6500);
+          }
+        }else{
+          if(err.serverCode==='UNAUTHORIZED')return showDenied('คุณไม่มีสิทธิ์ใช้งาน');
+          showToast(err.message==='REQUEST_NOT_FINISHED'?'ระบบมีผู้ใช้งานพร้อมกันจำนวนมาก กรุณากดบันทึกอีกครั้ง':(err.message||'บันทึกไม่สำเร็จ กรุณาลองใหม่'),5500);
+        }
       }finally{
         btn.disabled=false;
         $('submitText').textContent='บันทึกข้อมูล';
@@ -333,6 +360,42 @@
       );
     }
 
+    const THAI_MONTHS=[
+      'มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน',
+      'กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'
+    ];
+
+    function populateSummarySelectors_(){
+      const now=new Date();
+      const currentYear=now.getFullYear();
+      const currentMonth=now.getMonth()+1;
+      const monthSelect=$('summaryMonth');
+      const yearSelect=$('summaryYear');
+
+      monthSelect.innerHTML='';
+      THAI_MONTHS.forEach((name,index)=>{
+        const option=document.createElement('option');
+        option.value=String(index+1).padStart(2,'0');
+        option.textContent=name;
+        if(index+1===currentMonth)option.selected=true;
+        monthSelect.appendChild(option);
+      });
+
+      yearSelect.innerHTML='';
+      // Current year plus 6 previous years. Display Buddhist year but use Gregorian internally.
+      for(let year=currentYear;year>=currentYear-6;year--){
+        const option=document.createElement('option');
+        option.value=String(year);
+        option.textContent=String(year+543);
+        if(year===currentYear)option.selected=true;
+        yearSelect.appendChild(option);
+      }
+    }
+
+    function selectedSummaryYearMonth_(){
+      return $('summaryYear').value+'-'+$('summaryMonth').value;
+    }
+
     async function openSummaryMode(){
       $('loadingGate').classList.add('hidden');
       $('deniedGate').classList.add('hidden');
@@ -342,56 +405,7 @@
       $('summaryProfileName').textContent=state.user?.displayName||'LINE User';
       $('summaryProfileImage').src=state.user?.pictureUrl||'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64"%3E%3Crect width="64" height="64" rx="32" fill="%2331295b"/%3E%3C/svg%3E';
 
-      try{
-        $('summaryLoading').classList.remove('hidden');
-        $('summaryContent').classList.add('hidden');
-        const summary=await fetchSummary_(currentYearMonth_());
-        state.summaryData=summary;
-        renderSummaryPreview_(summary);
-        $('summaryLoading').classList.add('hidden');
-        $('summaryContent').classList.remove('hidden');
-      }catch(err){
-        console.error(err);
-        $('summaryLoading').textContent=err.message||'ไม่สามารถสรุปข้อมูลได้';
-      }
-    }
-
-    function renderSummaryRows_(targetId,items,ranked=false){
-      const target=$(targetId);
-      target.innerHTML='';
-
-      if(!items||!items.length){
-        target.innerHTML='<div class="summary-empty">ยังไม่มีข้อมูล</div>';
-        return;
-      }
-
-      items.forEach((item,index)=>{
-        const row=document.createElement('div');
-        row.className='summary-row';
-        const left=document.createElement('span');
-        const right=document.createElement('strong');
-        if(ranked){
-          const rank=document.createElement('span');
-          rank.className='summary-rank';
-          rank.textContent=String(index+1);
-          left.appendChild(rank);
-        }
-        left.appendChild(document.createTextNode(String(item.name||'-')));
-        right.textContent=formatSummaryAmount_(item.amount)+' บาท';
-        row.appendChild(left);
-        row.appendChild(right);
-        target.appendChild(row);
-      });
-    }
-
-    function renderSummaryPreview_(summary){
-      $('summaryTitle').textContent='📊 ค่าใช้จ่ายเดือน '+summary.monthLabel;
-      $('summaryTotal').textContent=formatSummaryAmount_(summary.total,true);
-      $('summaryCount').textContent='มีจำนวน: '+Number(summary.count||0).toLocaleString('th-TH')+' รายการ';
-      $('summaryGenerated').textContent='UPDATED: '+String(summary.generatedAt||'-');
-      renderSummaryRows_('summaryWorkTypes',summary.workTypes,false);
-      renderSummaryRows_('summaryCategories',summary.categories,false);
-      renderSummaryRows_('summaryMachines',summary.machines,true);
+      populateSummarySelectors_();
     }
 
     function summaryFlexRow_(label,amount,accent=false){
@@ -466,105 +480,58 @@
       };
     }
 
-    $('shareSummaryBtn').addEventListener('click',async()=>{
-      const btn=$('shareSummaryBtn');
+    $('runSummaryBtn').addEventListener('click',async()=>{
+      const btn=$('runSummaryBtn');
 
       if(btn.dataset.mode==='close'){
-        try{liff.closeWindow();}catch(_){window.history.back();}
+        if(liff.isInClient())liff.closeWindow();
+        else window.history.back();
         return;
       }
 
-      if(!state.authorized||!state.summaryData)return showDenied('คุณไม่มีสิทธิ์ใช้งาน');
-      if(!liff.isInClient()||liff.getContext()?.type!=='group')return showDenied('คุณไม่มีสิทธิ์ใช้งาน','กรุณาเปิดสรุปจาก LINE Group');
+      if(!state.authorized)return showDenied('คุณไม่มีสิทธิ์ใช้งาน');
+      if(!liff.isInClient()||liff.getContext()?.type!=='group'){
+        return showDenied('คุณไม่มีสิทธิ์ใช้งาน','กรุณาเปิดเมนูสรุปจาก LINE Group');
+      }
 
       try{
         btn.disabled=true;
-        btn.textContent='กำลังส่งสรุป...';
-        // This sends on behalf of the current LINE user.
-        await liff.sendMessages([buildSummaryFlexCard(state.summaryData)]);
-        showToast('ส่งสรุปเข้า LINE สำเร็จ');
-        btn.dataset.mode='close';
-        btn.textContent='ปิด';
-      }catch(err){
-        console.error(err);
-        showToast(err.message||'ส่งสรุปไม่สำเร็จ กรุณาลองใหม่',5500);
-      }finally{
-        btn.disabled=false;
-      }
-    });
+        btn.textContent='กำลังสรุป...';
 
-    $('shareLineBtn').addEventListener('click',async()=>{
-      if(!state.authorized||!state.lastSubmission){
-        return showDenied('คุณไม่มีสิทธิ์ใช้งาน');
-      }
-
-      if(!liff.isInClient()||liff.getContext()?.type!=='group'){
-        return showDenied(
-          'คุณไม่มีสิทธิ์ใช้งาน',
-          'กรุณาเปิดฟอร์มใหม่จากข้อความใน LINE Group'
-        );
-      }
-
-      const btn=$('shareLineBtn');
-      btn.disabled=true;
-      $('sendResult').textContent='';
-
-      try{
-        btn.textContent='กำลังจัดทำสรุป...';
-
-        // Summary is generated AFTER the saved row exists, so this submission is included.
-        const summary=await fetchSummary_(yearMonthFromDate_(state.lastSubmission.expenseDate));
+        const summary=await fetchSummary_(selectedSummaryYearMonth_());
+        state.summaryData=summary;
 
         btn.textContent='กำลังส่งเข้า LINE...';
+        await liff.sendMessages([buildSummaryFlexCard(summary)]);
 
-        // Both messages are sent on behalf of the current LINE user.
-        // Expense Flex is first; Monthly Summary Flex follows immediately.
-        await liff.sendMessages([
-          buildLineFlexCard(state.lastSubmission),
-          buildSummaryFlexCard(summary)
-        ]);
-
-        $('sendResult').textContent='ส่งรายการและสรุปเข้า LINE กลุ่มด้วยบัญชีของคุณเรียบร้อย';
-        showToast('ส่งรายการ + สรุปเข้า LINE สำเร็จ');
-
-        gasCall(
-          'markSent',
-          {
-            idToken:state.idToken,
-            reference:state.lastSubmission.reference
-          },
-          {
-            requestId:'sent-'+state.lastSubmission.reference,
-            attempts:3,
-            waitMs:15000,
-            jitterMax:0
-          }
-        ).catch(console.warn);
+        showToast('ส่งสรุปเดือน '+summary.monthLabel+' เข้า LINE สำเร็จ',5000);
+        btn.dataset.mode='close';
+        btn.textContent='ปิด';
 
       }catch(err){
         console.error(err);
-
-        if(err.serverCode==='UNAUTHORIZED'){
-          return showDenied('คุณไม่มีสิทธิ์ใช้งาน');
-        }
-
         if(String(err?.code)==='403'){
-          showToast(
-            'LINE ไม่อนุญาตให้ส่งข้อความ กรุณาเปิด LIFF URL ใหม่จากข้อความในกลุ่ม',
-            6500
-          );
-          return;
+          showToast('LINE ไม่อนุญาตให้ส่งสรุป กรุณาเปิดเมนูจาก LINE Group ใหม่',6500);
+        }else{
+          showToast(err.message||'ส่งสรุปไม่สำเร็จ กรุณาลองใหม่',5500);
         }
-
-        showToast(err.message||'ส่ง LINE ไม่สำเร็จ กรุณาลองใหม่',5500);
-
       }finally{
         btn.disabled=false;
-        btn.textContent='แชร์ไป LINE กลุ่ม';
       }
     });
 
-    $('closeBtn').addEventListener('click',()=>{$('successModal').classList.add('hidden');document.body.style.overflow='';$('expenseForm').reset();$('expenseDate').value=todayLocal();state.evidenceDataUrl='';state.lastSubmission=null;$('machineNameField').classList.add('hidden');$('machineName').required=false;$('imageInput').value='';$('imagePreview').src='';$('previewWrap').classList.add('hidden');$('uploadEmpty').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})})
+    $('closeBtn').addEventListener('click',()=>{
+      try{
+        if(liff.isInClient()){
+          liff.closeWindow();
+        }else{
+          window.history.back();
+        }
+      }catch(err){
+        console.warn('closeWindow fallback',err);
+        window.history.back();
+      }
+    });
     initLiff();
   </script>
 
@@ -572,7 +539,7 @@
     position:fixed;right:8px;bottom:7px;z-index:9999;
     font:700 8px/1.2 Arial,sans-serif;letter-spacing:.05em;
     color:rgba(255,255,255,.34);pointer-events:none">
-    BUILD V9 • USER SUMMARY FLEX • 2026-08-25
+    BUILD V10 • AUTO SEND + MONTH SELECT • 2026-08-28
   </div>
 
 </body>
