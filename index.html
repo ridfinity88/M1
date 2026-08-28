@@ -451,7 +451,7 @@
     }
 
     function buildSummaryFlexCard(summary){
-      const bodyContents=[
+      const headerContents=[
         {type:'text',text:'📊 ค่าใช้จ่ายเดือน '+summary.monthLabel,size:'xl',weight:'bold',color:'#FFFFFF',wrap:true},
         {type:'text',text:'MONTHLY EXPENSE SUMMARY',size:'xs',weight:'bold',color:'#C4B5FD',margin:'sm'},
         {type:'separator',color:'#514373',margin:'lg'},
@@ -460,6 +460,7 @@
         {type:'text',text:'มีจำนวน: '+Number(summary.count||0).toLocaleString('th-TH')+' รายการ',size:'sm',color:'#CAC7D8',margin:'sm'}
       ];
 
+      const bodyContents=[];
       bodyContents.push(...summarySection_('ประเภทงาน',summary.workTypes,false));
       bodyContents.push(...summarySection_('หมวดค่าใช้จ่าย',summary.categories,false));
       bodyContents.push(...summarySection_('Machine Top 5',summary.machines,true));
@@ -477,11 +478,7 @@
           },
           header:{
             type:'box',layout:'vertical',paddingAll:'18px',
-            contents:[
-              {type:'text',text:'MONTHLY ANALYTICS',size:'xs',weight:'bold',color:'#C4B5FD'},
-              {type:'text',text:'Expense Summary',size:'xxl',weight:'bold',color:'#FFFFFF',margin:'sm'},
-              {type:'text',text:'สรุปค่าใช้จ่ายฝ่ายวิศวกรรม',size:'sm',color:'#B8B3CD',margin:'sm'}
-            ]
+            contents:headerContents
           },
           body:{type:'box',layout:'vertical',paddingAll:'19px',contents:bodyContents},
           footer:{
